@@ -3,696 +3,232 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Workbase — For Those Building What's Next</title>
+  <title>Workbase — Nigeria's Selection Layer for Digital Gig Operators</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --off-white: #f7f6f2;
-      --white: #ffffff;
-      --charcoal: #171a1e;
-      --charcoal-mid: #2f3640;
-      --charcoal-light: #5f6978;
-      --accent: #0d4f5c;
-      --accent-light: #1a6b7a;
-      --accent-ultra-light: #e8f2f4;
-      --surface-alt: #f7f9fb;
-      --border: #e3e8ee;
-      --border-soft: #edf1f5;
-      --shadow-sm: 0 8px 24px rgba(22, 27, 35, 0.04);
-      --shadow-md: 0 16px 40px rgba(22, 27, 35, 0.08);
-      --radius-sm: 10px;
-      --radius-md: 14px;
-      --radius-lg: 18px;
-      --space-2: 8px;
-      --space-3: 12px;
-      --space-4: 16px;
-      --space-5: 20px;
-      --space-6: 24px;
-      --space-8: 32px;
-      --space-10: 40px;
-      --space-12: 48px;
-      --space-16: 64px;
-      --space-20: 80px;
-      --space-24: 96px;
-      --font-display: 'Fraunces', serif;
-      --font-body: 'DM Sans', sans-serif;
-      --type-display: clamp(1.9rem, 2.3vw + 1.1rem, 3.4rem);
-      --type-lead: clamp(1.05rem, 0.45vw + 0.95rem, 1.25rem);
-      --type-body: clamp(1rem, 0.22vw + 0.95rem, 1.08rem);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--off-white);
-      color: var(--charcoal);
-      font-family: var(--font-body);
-      font-size: var(--type-body);
-      line-height: 1.65;
-      font-weight: 300;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    .site-background {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      pointer-events: none;
-      background-image:
-        radial-gradient(circle at 16% 12%, rgba(13, 79, 92, 0.08), transparent 44%),
-        radial-gradient(circle at 84% 18%, rgba(21, 31, 40, 0.08), transparent 40%),
-        radial-gradient(circle at 52% 96%, rgba(13, 79, 92, 0.05), transparent 50%);
-    }
-
-    .site-background.grid-anim::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      opacity: 0.06;
-      background-image:
-        repeating-linear-gradient(0deg, rgba(32, 43, 56, 0.22) 0, rgba(32, 43, 56, 0.22) 1px, transparent 1px, transparent 48px),
-        repeating-linear-gradient(90deg, rgba(32, 43, 56, 0.22) 0, rgba(32, 43, 56, 0.22) 1px, transparent 1px, transparent 48px);
-      animation: gridShift 90s linear infinite;
-    }
-
-    @keyframes gridShift {
-      0% { background-position: 0 0, 0 0; }
-      100% { background-position: 0 120px, 120px 0; }
-    }
-
-    .parallax-shape {
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(76px);
-      opacity: 0.24;
-      will-change: transform;
-    }
-
-    .shape-1 { width: 320px; height: 320px; top: 20%; left: -90px; background: radial-gradient(circle, rgba(13,79,92,0.45), rgba(13,79,92,0)); }
-    .shape-2 { width: 280px; height: 280px; top: 64%; right: -70px; background: radial-gradient(circle, rgba(33,52,67,0.42), rgba(33,52,67,0)); }
-    .shape-3 { width: 240px; height: 240px; top: 38%; right: 20%; background: radial-gradient(circle, rgba(13,79,92,0.24), rgba(13,79,92,0)); }
-
-    .container { width: min(1160px, 100% - 48px); margin-inline: auto; }
-    .stack-lg > * + * { margin-top: var(--space-10); }
-
-    nav {
-      position: fixed;
-      inset: 0 0 auto;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: min(1240px, 100% - 48px);
-      margin: 0 auto;
-      padding: 18px 0;
-      background: rgba(247, 249, 251, 0.8);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border-soft);
-    }
-
-    .nav-logo img { height: 28px; width: auto; }
-    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
-    .nav-links a { text-decoration: none; color: var(--charcoal-light); font-size: 14px; font-weight: 400; transition: color .2s; }
-    .nav-links a:hover { color: var(--charcoal); }
-    .nav-cta { background: var(--charcoal); color: var(--white) !important; padding: 11px 20px !important; border-radius: 999px; border: 1px solid transparent; }
-    .nav-cta:hover { background: #233243 !important; }
-
-    section { position: relative; padding: clamp(64px, 9vw, 112px) 0; width: min(1160px, 100% - 48px); margin: 0 auto; }
-    section:nth-of-type(even):not(.hero-section) { background: linear-gradient(180deg, rgba(247,249,251,0.74), rgba(247,249,251,0.3)); border-radius: var(--radius-lg); }
-
-    /* HERO LOCKED */
-    .hero-section {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-top: 120px;
-      padding-bottom: 80px;
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-      overflow: hidden;
-      isolation: isolate;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(130deg, rgba(255, 255, 255, 0.42) 0%, rgba(13, 79, 92, 0.04) 48%, rgba(255, 255, 255, 0.08) 100%);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .hero-blob {
-      position: absolute;
-      right: 8%;
-      top: 21%;
-      width: min(44vw, 460px);
-      aspect-ratio: 1 / 1;
-      border-radius: 50%;
-      background: radial-gradient(circle at 40% 38%, rgba(13, 79, 92, 0.36) 0%, rgba(13, 79, 92, 0.14) 36%, rgba(13, 79, 92, 0) 72%);
-      filter: blur(88px);
-      opacity: 0.36;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .hero-section > * { position: relative; z-index: 2; }
-    .hero-section::after {
-      content: '';
-      position: absolute;
-      right: -140px;
-      top: 90px;
-      width: 340px;
-      height: 340px;
-      border-radius: 50%;
-      background: radial-gradient(circle at center, rgba(13, 79, 92, 0.18), rgba(13, 79, 92, 0));
-      pointer-events: none;
-      z-index: 1;
-    }
-    .hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; }
-    .hero-headline { font-family: var(--font-display); font-size: clamp(48px, 7vw, 88px); font-weight: 400; line-height: 1.05; letter-spacing: -0.02em; color: #1A1A1A; margin-bottom: 24px; max-width: 800px; }
-    .hero-headline em { font-style: italic; color: var(--accent); }
-    .hero-sub { font-size: clamp(16px, 2vw, 19px); color: #6B6B6B; max-width: 520px; line-height: 1.65; margin-bottom: 48px; font-weight: 300; }
-    .hero-ctas,.cta-group { display:flex; flex-direction:column; gap:8px; }
-    .cta-row { display:flex; flex-wrap:wrap; gap:16px; align-items:flex-start; }
-    .hero-section .btn-primary { display:inline-block; background:var(--accent); color:var(--white); padding:14px 28px; border-radius:4px; font-family:var(--font-body); font-size:14px; font-weight:500; letter-spacing:.02em; text-decoration:none; border:1.5px solid var(--accent); cursor:pointer; transition:background .2s,transform .2s,box-shadow .2s; }
-    .hero-section .btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: 0 8px 18px rgba(13, 79, 92, 0.22); }
-    .hero-section .btn-secondary { display:inline-block; background:transparent; color:#1A1A1A; padding:14px 28px; border-radius:4px; font-family:var(--font-body); font-size:14px; font-weight:400; letter-spacing:.02em; text-decoration:none; border:1.5px solid #E2E0D8; cursor:pointer; transition:border-color .2s,color .2s,transform .2s; }
-    .hero-section .btn-secondary:hover { border-color:#1A1A1A; transform:translateY(-1px); }
-    .btn-microcopy { font-size: 11px; color: #6B6B6B; letter-spacing: 0.03em; }
-
-    .credibility-strip { margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 8px 0; }
-    .cred-item { display:flex; align-items:center; gap:8px; font-size:12px; color:var(--charcoal-light); padding-right:32px; margin-right:32px; border-right:1px solid var(--border); }
-    .cred-item:last-child { border-right:none; margin-right:0; padding-right:0; }
-    .cred-dot { width:5px;height:5px;border-radius:50%;background:var(--accent); }
-    .proof-strip { margin-top: 36px; display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; max-width:840px; }
-    .proof-item { background:rgba(255,255,255,.66); border:1px solid var(--border-soft); border-radius:8px; padding:16px; backdrop-filter: blur(4px); }
-    .proof-value { font-family: var(--font-display); font-size: 30px; line-height: 1; margin-bottom: 8px; }
-    .proof-label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--charcoal-light); }
-
-    .section-divider { border: none; border-top: 1px solid var(--border-soft); width:min(1160px,100% - 48px); margin: 0 auto; }
-    .section-label { font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: block; }
-    .section-headline { font-family: var(--font-display); font-size: var(--type-display); font-weight: 400; line-height: 1.12; letter-spacing: -0.02em; margin-bottom: 24px; }
-    .section-headline em { font-style: italic; color: var(--accent); }
-    .section-body { font-size: var(--type-lead); color: var(--charcoal-light); line-height: 1.72; max-width: 640px; }
-
-    .hiring-section,.selective-section { display:grid; grid-template-columns:1fr 1fr; gap:clamp(36px,7vw,80px); align-items:start; }
-    .hiring-emotional { font-family: var(--font-display); font-size: clamp(1.2rem,1.2vw + .9rem,1.6rem); font-style: italic; color: var(--charcoal-mid); margin-bottom: 28px; line-height: 1.45; }
-    .feature-list { list-style:none; display:flex; flex-direction:column; gap:14px; margin-top:22px; }
-    .feature-list li { display:flex; gap:12px; font-size:15px; color:var(--charcoal-mid); line-height:1.6; }
-    .feature-list li::before { content:'—'; color:var(--accent); }
-
-    .tracks-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin-top:48px; }
-    .track-card,
-    .outcome-card,
-    .authority-section,
-    .how-step { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
-    .track-card { padding: 28px 24px; transition: transform .25s,border-color .25s,box-shadow .25s; }
-    .track-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .track-name { font-family: var(--font-display); font-size: 24px; margin-bottom: 10px; }
-    .track-desc { font-size: 14px; color: var(--charcoal-light); margin-bottom: 14px; }
-    .track-outcome { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); background: var(--accent-ultra-light); padding: 5px 10px; border-radius: 999px; }
-
-    .ai-divider-statement { font-family: var(--font-display); font-size: clamp(1.7rem,2.5vw + .8rem,2.8rem); line-height:1.25; max-width: 680px; margin-bottom: 40px; padding-bottom: 36px; border-bottom:1px solid var(--border); }
-    .ai-divider-statement span:last-child { font-style: italic; color: var(--accent); }
-    .ai-pillars { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; margin-top:36px; }
-    .ai-pillar { padding:22px; border:1px solid var(--border); border-radius: var(--radius-md); background: rgba(255,255,255,.65); }
-    .ai-pillar-label { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
-
-    .how-steps { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; margin-top:42px; }
-    .how-step { padding: 30px 24px; border-left: 3px solid transparent; transition: border-color .25s, transform .25s; }
-    .how-step:hover { border-left-color: var(--accent); transform: translateY(-3px); }
-    .how-step-num { font-size: 11px; letter-spacing: .1em; color: var(--accent); margin-bottom: 12px; display:block; }
-    .how-step-title { font-family: var(--font-display); font-size: 19px; margin-bottom: 10px; }
-    .how-step-desc { font-size: 14px; color: var(--charcoal-light); }
-
-    .authority-section { padding: 54px; }
-    .authority-body { font-size: var(--type-lead); color: var(--charcoal-mid); max-width: 620px; margin-bottom: 34px; }
-    .authority-bullets { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:18px; }
-    .authority-bullet { display:flex; gap:12px; color: var(--charcoal-mid); }
-    .authority-bullet-mark { width:6px;height:6px;border-radius:50%;background:var(--accent); margin-top: 8px; }
-
-    .outcomes-grid { margin-top:40px; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
-    .outcome-card { padding:24px; transition: transform .2s; }
-    .outcome-card:hover { transform: translateY(-3px); }
-    .outcome-metric { font-family: var(--font-display); font-size: 34px; color: var(--accent); margin-bottom: 8px; }
-
-    .final-cta-section { text-align:center; max-width:760px; margin:0 auto; }
-    .scarcity-line { font-size: 18px; color: var(--charcoal-mid); margin-bottom: 8px; }
-    .quality-line { font-size: 12px; letter-spacing: .08em; color: var(--charcoal-light); margin-bottom: 40px; text-transform: uppercase; }
-    .final-cta-buttons { display:flex; justify-content:center; flex-wrap:wrap; gap:16px; }
-
-    /* unified button system (outside hero) */
-    .btn-primary, .btn-secondary {
-      display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      padding: 12px 24px; border-radius: 999px; font-size: 14px; font-weight: 500;
-      text-decoration:none; cursor:pointer; border:1px solid transparent;
-      transition: transform .2s, box-shadow .2s, background .2s, color .2s, border-color .2s;
-    }
-    .btn-ui.btn-primary { background: var(--charcoal); color: var(--white); box-shadow: 0 8px 18px rgba(23,26,30,.14); }
-    .btn-ui.btn-primary:hover { transform: translateY(-1px); border-color: rgba(13,79,92,.4); box-shadow: 0 0 0 3px rgba(13,79,92,.1), 0 10px 24px rgba(23,26,30,.2); }
-    .btn-ui.btn-secondary { background: transparent; color: var(--charcoal); border-color: #c9d2dc; }
-    .btn-ui.btn-secondary:hover { background: var(--charcoal); color: var(--white); }
-    .btn-primary:focus-visible,.btn-secondary:focus-visible,.nav-links a:focus-visible,.modal-close:focus-visible,
-    .form-input:focus-visible,.form-select:focus-visible { outline: 3px solid rgba(13,79,92,.35); outline-offset: 2px; }
-
-    .hero-section .btn-primary { background:var(--accent); color:var(--white); border:1.5px solid var(--accent); border-radius:4px; padding:14px 28px; }
-    .hero-section .btn-secondary { background:transparent; color:#1A1A1A; border:1.5px solid #E2E0D8; border-radius:4px; padding:14px 28px; }
-
-    #waitlist::before { content:''; position:absolute; inset:0; background: radial-gradient(circle at 50% 24%, rgba(13,79,92,.075), rgba(13,79,92,0) 64%); pointer-events:none; }
-    footer { width:min(1160px,100% - 48px); margin:0 auto; padding:40px 0; border-top:1px solid var(--border-soft); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
-    .footer-copy,.footer-links a { font-size: 12px; color: var(--charcoal-light); text-decoration: none; }
-    .footer-links { display:flex; gap:24px; list-style:none; }
-
-    .modal-overlay { position:fixed; inset:0; background:rgba(26,26,26,.6); z-index:200; display:flex; align-items:center; justify-content:center; padding:24px; opacity:0; pointer-events:none; transition:opacity .3s; backdrop-filter: blur(4px); }
-    .modal-overlay.active { opacity:1; pointer-events:all; }
-    .modal { background:var(--off-white); border:1px solid var(--border); border-radius: 14px; max-width:520px; width:100%; padding:48px; position:relative; transform:translateY(16px); transition:transform .3s; }
-    .modal-overlay.active .modal { transform:none; }
-    .modal-close { position:absolute; top:20px; right:20px; background:none; border:none; font-size:20px; color:var(--charcoal-light); cursor:pointer; }
-    .role-cards { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px; }
-    .role-card { border:1.5px solid var(--border); border-radius:10px; padding:20px 16px; cursor:pointer; transition:border-color .2s,background .2s; }
-    .role-card:hover,.role-card.selected { border-color:var(--accent); background:var(--accent-ultra-light); }
-    .form-group { display:flex; flex-direction:column; gap:4px; margin-bottom:16px; }
-    .form-input,.form-select { padding:12px 14px; border:1.5px solid var(--border); border-radius:10px; background:var(--white); }
-    .form-error { font-size: 11px; color: #c0392b; display:none; }
-    .form-error.visible { display:block; }
-
-    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
-    .reveal.is-visible { opacity: 1; transform: translateY(0); }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .reveal, .reveal.is-visible { opacity: 1 !important; transform: none !important; transition: none !important; }
-      .grid-anim::before, .parallax-shape, .hero::before, .hero::after, .hero-blob, #waitlist::before { animation: none !important; transform: none !important; }
-    }
-
-    @media (max-width: 960px) {
-      .tracks-grid,.outcomes-grid { grid-template-columns: 1fr 1fr; }
-      .how-steps { grid-template-columns: repeat(2,minmax(0,1fr)); }
-    }
-
-    @media (max-width: 768px) {
-      nav,.container,section,footer,.section-divider { width: min(1160px, 100% - 32px); }
-      section { padding: clamp(56px, 12vw, 80px) 0; }
-      .hiring-section,.selective-section,.tracks-grid,.outcomes-grid,.how-steps,.role-cards { grid-template-columns: 1fr; }
-      .cta-row { flex-direction: column; }
-      .authority-section { padding: 32px 24px; }
-      .modal { padding: 32px 24px; }
-      .cred-item { border-right: none; padding-right: 0; margin-right: 0; width: 50%; }
-      .hero-section::after,.hero-blob { display:none; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="site-background grid-anim" aria-hidden="true">
-    <div class="parallax-shape shape-1"></div>
-    <div class="parallax-shape shape-2"></div>
-    <div class="parallax-shape shape-3"></div>
-  </div>
+  <div class="bg-grid grid-anim" aria-hidden="true"></div>
+  <div class="bg-noise" aria-hidden="true"></div>
 
+  <header class="site-header">
+    <nav class="container nav" aria-label="Primary">
+      <a href="#top" class="nav-logo" aria-label="Workbase home">
+        <img src="Workbase_Logo.svg" alt="Workbase" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="#hirers">For Hirers</a></li>
+        <li><a href="#operators">For Operators</a></li>
+        <li><a href="#tracks">Tracks</a></li>
+        <li><a href="#process">Process</a></li>
+      </ul>
+      <a href="#" class="btn btn--secondary" onclick="openModal(event, 'hiring')">Request Placement Access</a>
+    </nav>
+  </header>
 
-  <!-- ── NAV ── -->
-  <nav id="nav">
-    <a href="#" class="nav-logo">
-      <img src="Workbase_Logo.svg" alt="Workbase" />
-    </a>
-    <ul class="nav-links">
-      <li><a href="#hiring">Hiring Partners</a></li>
-      <li><a href="#operators">Digital Operators</a></li>
-      <li><a href="#how">How It Works</a></li>
-      <li><a href="#waitlist" class="nav-cta" onclick="openModal(event, 'hiring')">Request Access</a></li>
-    </ul>
-  </nav>
-
-  <!-- ── HERO ── -->
-  <section class="hero-section hero" id="home">
-    <div class="hero-blob" aria-hidden="true"></div>
-    <p class="hero-eyebrow" id="hero-eyebrow">Nigeria-Based. Global Standard.</p>
-    <h1 class="hero-headline" id="hero-headline">
-      For Those Building<br /><em>What's Next.</em>
-    </h1>
-    <p class="hero-sub" id="hero-sub">
-      Workbase connects curated digital professionals with the organizations that demand precision. Selective intake. Structured alignment. Accountable delivery.
-    </p>
-
-    <div class="hero-ctas" id="hero-ctas">
-      <div class="cta-row">
-        <div class="cta-group">
-          <a href="#waitlist" class="btn-primary" onclick="openModal(event, 'hiring')">Request Hiring Access</a>
-          <span class="btn-microcopy">Structured matching. No open bidding.</span>
+  <main id="top">
+    <section class="section hero section--dark">
+      <div class="container hero-layout">
+        <div class="hero-copy stack">
+          <p class="eyebrow">Nigeria's curated digital gig operators — Nigeria-first.</p>
+          <h1>Stop gambling on freelancers. Get gig operators who ship.</h1>
+          <p class="lead">Workbase is the selection layer for Nigeria's digital gig economy — pre-vetted operators for contracts, sprints, and retainers. You don't need more options. You need dependable execution.</p>
+          <div class="hero-ctas">
+            <a href="#" class="btn btn--primary" onclick="openModal(event, 'hiring')">Request Placement Access</a>
+            <a href="#" class="btn btn--ghost" onclick="openModal(event, 'operator')">Apply for Operator Selection</a>
+          </div>
+          <p class="muted">Limited intake. Standards first.</p>
         </div>
-        <div class="cta-group">
-          <a href="#waitlist" class="btn-secondary" onclick="openModal(event, 'operator')">Submit for Digital Operator Review</a>
-          <span class="btn-microcopy">Assessment required. Limited intake.</span>
+        <aside class="hero-panel card card--hover">
+          <h2 class="h2">Selection → Placement → Performance</h2>
+          <p>Workbase is built for teams that hire in the digital gig economy but refuse low standards.</p>
+          <ul>
+            <li>Nigeria-based operators only</li>
+            <li>Clear engagement models: contracts, sprints, retainers</li>
+            <li>Structured matching with defined selection gates</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="hirers">
+      <div class="container">
+        <div class="section-header stack reveal">
+          <p class="eyebrow">For hiring teams</p>
+          <h2 class="h2">The gig economy has options. Execution is rare.</h2>
+          <p class="lead">Most hiring pain comes from weak selection and unclear standards. Workbase narrows the field to operators who can execute under pressure, not just interview well.</p>
         </div>
-      </div>
-    </div>
 
-    <div class="credibility-strip" id="hero-cred">
-      <div class="cred-item"><span class="cred-dot"></span>5 Curated Operator Tracks</div>
-      <div class="cred-item"><span class="cred-dot"></span>Performance-Assessed Talent</div>
-      <div class="cred-item"><span class="cred-dot"></span>AI-Empowered Execution</div>
-      <div class="cred-item"><span class="cred-dot"></span>Nigeria-Based. Global Standard.</div>
-    </div>
-
-
-    <div class="proof-strip" id="hero-proof">
-      <div class="proof-item">
-        <div class="proof-value">48h</div>
-        <div class="proof-label">Average initial match window</div>
-      </div>
-      <div class="proof-item">
-        <div class="proof-value">Top 12%</div>
-        <div class="proof-label">Operator acceptance rate</div>
-      </div>
-      <div class="proof-item">
-        <div class="proof-value">5</div>
-        <div class="proof-label">Domain-specific tracks</div>
-      </div>
-      <div class="proof-item">
-        <div class="proof-value">100%</div>
-        <div class="proof-label">Structured intake workflow</div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-divider" />
-
-  <!-- ── HIRING PARTNERS ── -->
-  <section id="hiring" class="section reveal">
-    <div class="hiring-section">
-      <div class="hiring-left">
-        <span class="section-label reveal">Hiring Partners</span>
-        <h2 class="section-headline reveal">
-          Stop navigating noise.<br /><em>Protect momentum.</em>
-        </h2>
-        <p class="hiring-emotional reveal">"You're not looking for help.<br />You're protecting momentum."</p>
-        <p class="section-body reveal">
-          Open talent markets are unpredictable. Vetting takes time you don't have. A wrong hire costs more than the role itself. Workbase replaces ambiguity with structure — so you spend less time evaluating and more time executing.
-        </p>
-      </div>
-      <div class="hiring-right">
-        <ul class="feature-list reveal-stagger">
-          <li class="reveal">Curated introductions — not an open inbox of applications.</li>
-          <li class="reveal">Every Digital Operator is assessed before introduction.</li>
-          <li class="reveal">Domain-specific tracks ensure relevant alignment to your project.</li>
-          <li class="reveal">Accountability is designed in from day one — not added later.</li>
-          <li class="reveal">Faster starts. Fewer course corrections. Better outcomes.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-divider" />
-
-  <!-- ── DIGITAL OPERATORS ── -->
-  <section id="operators" class="section reveal">
-    <span class="section-label reveal">Digital Operators</span>
-    <div class="hiring-section">
-      <div>
-        <h2 class="section-headline reveal">
-          Your craft deserves<br /><em>the right stage.</em>
-        </h2>
-        <p class="hiring-emotional reveal">"You've done the work.<br />You deserve the stage."</p>
-        <p class="section-body reveal">
-          Price competition diminishes skilled professionals. You've built real capability — and that deserves to be recognized, not discounted. Workbase is built on standards that protect your positioning, not erode it.
-        </p>
-      </div>
-      <div>
-        <ul class="feature-list reveal-stagger">
-          <li class="reveal">No bidding wars. Your work speaks through a structured process.</li>
-          <li class="reveal">Assessment creates credibility — you earn your place, and that means something.</li>
-          <li class="reveal">Matched to opportunities aligned with your domain and goals.</li>
-          <li class="reveal">AI fluency is a track requirement — amplify your craft, not replace it.</li>
-          <li class="reveal">Be part of the standard, not the noise.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-divider" />
-
-  <!-- ── OPERATOR TRACKS ── -->
-  <section id="tracks" class="section reveal">
-    <span class="section-label reveal">Operator Tracks</span>
-    <h2 class="section-headline reveal">Five domains.<br /><em>One standard.</em></h2>
-    <p class="section-body reveal">Workbase organizes Digital Operators into domain-specific tracks. Each track has defined competency expectations, AI integration requirements, and performance benchmarks.</p>
-
-    <div class="tracks-grid reveal-stagger">
-      <div class="track-card reveal">
-        <span class="track-icon">◈</span>
-        <div class="track-name">Growth</div>
-        <p class="track-desc">Strategy, performance marketing, brand positioning, and audience development — with measurable accountability.</p>
-        <span class="track-outcome">Audience growth</span>
-      </div>
-      <div class="track-card reveal">
-        <span class="track-icon">◉</span>
-        <div class="track-name">Revenue</div>
-        <p class="track-desc">Sales enablement, funnel design, conversion strategy, and commercial execution at a professional standard.</p>
-        <span class="track-outcome">Conversion lift</span>
-      </div>
-      <div class="track-card reveal">
-        <span class="track-icon">◳</span>
-        <div class="track-name">Systems</div>
-        <p class="track-desc">Operations, automation, workflow architecture, and infrastructure — built for reliability and scale.</p>
-        <span class="track-outcome">Operational efficiency</span>
-      </div>
-      <div class="track-card reveal">
-        <span class="track-icon">◎</span>
-        <div class="track-name">Retention</div>
-        <p class="track-desc">Community management, customer success, lifecycle strategy, and relationship depth that compounds over time.</p>
-        <span class="track-outcome">Customer trust</span>
-      </div>
-      <div class="track-card reveal">
-        <span class="track-icon">◬</span>
-        <div class="track-name">Intelligence</div>
-        <p class="track-desc">Research, data analysis, insight design, and decision support — turning information into strategic clarity.</p>
-        <span class="track-outcome">Better decisions</span>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-divider" />
-
-  <!-- ── AI POSITIONING ── -->
-  <section id="ai" class="section reveal">
-    <div class="ai-divider-statement reveal">
-      <span>The future does not eliminate professionals.</span>
-      <span>It filters them.</span>
-    </div>
-
-    <p class="section-body reveal" style="margin-bottom: 0;">
-      AI fluency is not a shortcut — it is a multiplier. The professionals who thrive are those who combine genuine domain expertise with the precision of modern tooling. Workbase selects for exactly that combination.
-    </p>
-
-    <div class="ai-pillars reveal-stagger">
-      <div class="ai-pillar reveal">
-        <div class="ai-pillar-label">Human Judgment</div>
-        <div class="ai-pillar-text">Every decision, strategy, and creative output is still driven by a skilled professional. AI does not replace the center.</div>
-      </div>
-      <div class="ai-pillar reveal">
-        <div class="ai-pillar-label">Precision & Speed</div>
-        <div class="ai-pillar-text">AI-empowered operators move faster, iterate more precisely, and deliver outputs at a higher level of quality.</div>
-      </div>
-      <div class="ai-pillar reveal">
-        <div class="ai-pillar-label">Human Standards</div>
-        <div class="ai-pillar-text">Our vetting, our tracks, and our accountability are defined by people — not generated by an algorithm.</div>
-      </div>
-      <div class="ai-pillar reveal">
-        <div class="ai-pillar-label">Technology as Infrastructure</div>
-        <div class="ai-pillar-text">AI is the tool. The professional is the operator. That distinction is not a detail — it is the model.</div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-divider" />
-
-  <!-- ── SELECTIVE BY DESIGN ── -->
-  <section id="selective" class="section reveal">
-    <div class="selective-section">
-      <div>
-        <span class="section-label reveal">Our Approach</span>
-        <h2 class="section-headline reveal">Selective<br /><em>by Design.</em></h2>
-      </div>
-      <div>
-        <p class="section-body reveal" style="max-width: 100%; margin-bottom: 24px;">
-          Workbase does not scale by accepting everyone. We scale by deepening the quality of every connection. Controlled intake is not a constraint — it is the standard that makes each match meaningful.
-        </p>
-        <p class="section-body reveal" style="max-width: 100%;">
-          Hiring Partners receive introductions, not a list. Digital Operators are presented, not submitted to an open pool. Every engagement begins with alignment — not assumption.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-divider" />
-
-  <!-- ── HOW IT WORKS ── -->
-  <section id="how" class="section reveal">
-    <span class="section-label reveal">Process</span>
-    <h2 class="section-headline reveal">How Workbase Works</h2>
-    <p class="section-body reveal">Four steps. No ambiguity. Clear expectations from first contact to execution.</p>
-
-    <div class="how-steps reveal-stagger">
-      <div class="how-step reveal">
-        <span class="how-step-num">01</span>
-        <div class="how-step-title">Apply or Request Access</div>
-        <p class="how-step-desc">Digital Operators apply. Hiring Partners request access. The process begins with intention — not a casual signup.</p>
-      </div>
-      <div class="how-step reveal">
-        <span class="how-step-num">02</span>
-        <div class="how-step-title">Structured Vetting & Alignment</div>
-        <p class="how-step-desc">Operators are assessed against track standards. Expectations for both sides are clarified before any introduction is made.</p>
-      </div>
-      <div class="how-step reveal">
-        <span class="how-step-num">03</span>
-        <div class="how-step-title">Curated Matching</div>
-        <p class="how-step-desc">Aligned introductions based on domain, working style, and stated goals. Quality over quantity, every time.</p>
-      </div>
-      <div class="how-step reveal">
-        <span class="how-step-num">04</span>
-        <div class="how-step-title">Execute with Accountability</div>
-        <p class="how-step-desc">Work begins with shared clarity — not guesswork. Accountability is built in from the first conversation.</p>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-divider" />
-
-  <!-- ── AUTHORITY BLOCK ── -->
-  <section id="authority" class="section reveal">
-    <div class="authority-section reveal">
-      <span class="section-label">Built for Global Standards.</span>
-      <p class="authority-body">
-        Workbase is building the infrastructure layer between Nigerian digital excellence and global demand.
-      </p>
-      <div class="authority-bullets">
-        <div class="authority-bullet">
-          <span class="authority-bullet-mark"></span>
-          Selective intake model — not open-door enrollment
-        </div>
-        <div class="authority-bullet">
-          <span class="authority-bullet-mark"></span>
-          Domain-specific operator tracks with defined competency standards
-        </div>
-        <div class="authority-bullet">
-          <span class="authority-bullet-mark"></span>
-          Structured vetting process — assessment before introduction
-        </div>
-        <div class="authority-bullet">
-          <span class="authority-bullet-mark"></span>
-          Founding member onboarding phase — now open
+        <div class="grid stats-grid reveal-stagger">
+          <article class="card stat-card reveal">
+            <p class="muted">Engagement model</p>
+            <h3>Contracts</h3>
+            <p>Project-defined delivery with explicit outcomes and handoff standards.</p>
+          </article>
+          <article class="card stat-card reveal">
+            <p class="muted">Engagement model</p>
+            <h3>Sprints</h3>
+            <p>Short-cycle execution for urgent growth, product, and operations priorities.</p>
+          </article>
+          <article class="card stat-card reveal">
+            <p class="muted">Engagement model</p>
+            <h3>Retainers</h3>
+            <p>Ongoing operator support for teams that need steady weekly output.</p>
+          </article>
         </div>
       </div>
-    </div>
+      <div class="parallax-shape shape-a" data-speed="0.08" aria-hidden="true"></div>
+    </section>
 
-    <div class="outcomes-grid reveal-stagger">
-      <div class="outcome-card reveal">
-        <div class="outcome-metric">3.1x</div>
-        <div class="outcome-title">Faster project ramp-up</div>
-        <p class="outcome-desc">Teams entering with structured alignment moved from kickoff to execution in days, not weeks.</p>
-      </div>
-      <div class="outcome-card reveal">
-        <div class="outcome-metric">41%</div>
-        <div class="outcome-title">Lower rework cycles</div>
-        <p class="outcome-desc">Defined scope and operator-track fit reduced revision loops across growth and systems projects.</p>
-      </div>
-      <div class="outcome-card reveal">
-        <div class="outcome-metric">92%</div>
-        <div class="outcome-title">Retention after first engagement</div>
-        <p class="outcome-desc">Careful matching increased continuity for both Hiring Partners and Digital Operators.</p>
-      </div>
-    </div>
-
-  </section>
-
-  <hr class="section-divider" />
-
-  <!-- ── FINAL CTA ── -->
-  <section id="waitlist" class="section reveal">
-    <div class="final-cta-section">
-      <span class="section-label reveal" style="display: block; text-align: center;">Join the Waitlist</span>
-      <h2 class="section-headline reveal" style="text-align: center; max-width: 520px; margin: 0 auto 24px;">
-        The right time<br />to begin is <em>now.</em>
-      </h2>
-      <p class="scarcity-line reveal">
-        We onboard in controlled batches to protect standards and alignment.
-      </p>
-      <p class="quality-line reveal">Quality scales through structure — not volume.</p>
-      <div class="final-cta-buttons reveal reveal-stagger">
-        <div class="cta-group" style="align-items: center;">
-          <a href="#" class="btn-primary btn-ui" onclick="openModal(event, 'hiring')">Request Hiring Access</a>
-          <span class="btn-microcopy">Structured matching. No open bidding.</span>
+    <section class="section section--alt" id="risk">
+      <div class="container">
+        <div class="section-header stack reveal">
+          <p class="eyebrow">Cost of hiring wrong</p>
+          <h2 class="h2">If selection is weak, everything downstream gets expensive.</h2>
         </div>
-        <div class="cta-group" style="align-items: center;">
-          <a href="#" class="btn-secondary btn-ui" onclick="openModal(event, 'operator')">Submit for Digital Operator Review</a>
-          <span class="btn-microcopy">Assessment required. Limited intake.</span>
+        <div class="grid risk-grid reveal-stagger">
+          <article class="card reveal"><h3>Missed deadlines</h3><p>Timelines slip when delivery discipline isn't screened before placement.</p></article>
+          <article class="card reveal"><h3>Rework loops</h3><p>Unclear ownership creates revisions, context loss, and avoidable delays.</p></article>
+          <article class="card reveal"><h3>Team drag</h3><p>Internal staff spend cycles fixing execution instead of driving growth.</p></article>
+          <article class="card reveal"><h3>Cash leakage</h3><p>You pay for activity while outcomes stay inconsistent.</p></article>
+          <article class="card reveal"><h3>Brand risk</h3><p>Poor operator quality hits customer trust and partner confidence.</p></article>
+          <article class="card reveal"><h3>Leadership fatigue</h3><p>Founders and managers become bottlenecks for basic quality control.</p></article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── FOOTER ── -->
-  <footer>
-    <span class="footer-copy">© 2025 Workbase. Nigeria-Based. Global Standard.</span>
-    <ul class="footer-links">
-      <li><a href="#">Privacy</a></li>
-      <li><a href="#">Terms</a></li>
-      <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=edhugoaaron@gmail.com">Contact</a></li>
-    </ul>
+    <section class="section" id="operators">
+      <div class="container two-col">
+        <div class="stack reveal">
+          <p class="eyebrow">For operators</p>
+          <h2 class="h2">If you're elite, stop competing with amateurs.</h2>
+          <p class="lead">Workbase is for Nigeria-based operators who want serious gigs, serious standards, and serious counterparties.</p>
+          <a href="#" class="btn btn--secondary" onclick="openModal(event, 'operator')">Apply for Operator Selection</a>
+        </div>
+        <div class="card card--hover reveal">
+          <h3>What selection protects</h3>
+          <ul>
+            <li>Clear scope before work starts</li>
+            <li>Better-fit contracts and retainers</li>
+            <li>Less pricing pressure from low-signal bidding</li>
+            <li>Performance tracked by outcomes, not noise</li>
+          </ul>
+        </div>
+      </div>
+      <div class="parallax-shape shape-b" data-speed="0.05" aria-hidden="true"></div>
+    </section>
+
+    <section class="section section--dark" id="tracks">
+      <div class="container">
+        <div class="section-header stack reveal">
+          <p class="eyebrow">Operator tracks</p>
+          <h2 class="h2">Five gig tracks. One obsession: outcomes.</h2>
+        </div>
+        <div class="grid tracks-grid reveal-stagger">
+          <article class="card track-card reveal"><h3>Growth</h3><p>Demand generation, campaign execution, and conversion-focused growth systems.</p></article>
+          <article class="card track-card reveal"><h3>Revenue</h3><p>Pipeline operations, sales enablement workflows, and close-rate improvement.</p></article>
+          <article class="card track-card reveal"><h3>Systems</h3><p>Automation, tooling, integration, and repeatable operating infrastructure.</p></article>
+          <article class="card track-card reveal"><h3>Retention</h3><p>Lifecycle messaging, customer health operations, and churn reduction loops.</p></article>
+          <article class="card track-card reveal"><h3>Intelligence</h3><p>Analytics operations, reporting reliability, and decision-ready insights.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="approach">
+      <div class="container two-col">
+        <div class="stack reveal">
+          <p class="eyebrow">Standards and gates</p>
+          <h2 class="h2">Selection first. Placement second. Performance always.</h2>
+          <p>We apply practical selection logic before any placement conversation. This is not an open marketplace.</p>
+        </div>
+        <div class="grid steps-grid reveal-stagger">
+          <article class="card step-card reveal"><h3>Gate 1: Capability</h3><p>Track-specific experience and execution depth.</p></article>
+          <article class="card step-card reveal"><h3>Gate 2: Reliability</h3><p>Consistency, communication, and delivery behavior.</p></article>
+          <article class="card step-card reveal"><h3>Gate 3: Fit</h3><p>Scope, timeline, and operating rhythm alignment.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="process">
+      <div class="container">
+        <div class="section-header stack reveal">
+          <p class="eyebrow">How it works</p>
+          <h2 class="h2">Four steps to predictable gig execution.</h2>
+        </div>
+        <div class="grid process-grid reveal-stagger">
+          <article class="card step-card reveal"><p class="muted">Step 1</p><h3>Define the outcome</h3><p>Tell us what must ship and how success is measured.</p></article>
+          <article class="card step-card reveal"><p class="muted">Step 2</p><h3>Selection shortlist</h3><p>We filter for operator quality and fit before intros.</p></article>
+          <article class="card step-card reveal"><p class="muted">Step 3</p><h3>Placement</h3><p>Choose the best-fit operator for contract, sprint, or retainer.</p></article>
+          <article class="card step-card reveal"><p class="muted">Step 4</p><h3>Performance tracking</h3><p>Run with clear scope, cadence, and execution accountability.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section final-cta section--dark" id="waitlist">
+      <div class="container stack reveal">
+        <p class="eyebrow">Final call</p>
+        <h2 class="h2">If you hire from noise, expect noise.</h2>
+        <p class="lead">If you want a higher standard for Nigeria's digital gig economy, start with a better selection layer.</p>
+        <div class="hero-ctas reveal-stagger">
+          <a href="#" class="btn btn--primary reveal" onclick="openModal(event, 'hiring')">Request Placement Access</a>
+          <a href="#" class="btn btn--ghost reveal" onclick="openModal(event, 'operator')">Apply for Operator Selection</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="section footer">
+    <div class="container footer-row">
+      <span>© 2025 Workbase. Nigeria-based digital gig operator network.</span>
+      <ul class="footer-links">
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=edhugoaaron@gmail.com">Contact</a></li>
+      </ul>
+    </div>
   </footer>
 
-  <!-- ── MODAL ── -->
   <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal">
       <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
-
-      <!-- Step 1: Role -->
       <div id="step1">
         <h2 class="modal-title" id="modalTitle">Join Workbase</h2>
         <p class="modal-sub">Tell us how you intend to use the platform.</p>
         <div class="role-cards">
-          <div class="role-card" id="roleHiring" onclick="selectRole('hiring')">
-            <div class="role-card-label">Hiring Partner</div>
-            <div class="role-card-desc">I need to engage skilled digital professionals for my project or organization.</div>
-          </div>
-          <div class="role-card" id="roleOperator" onclick="selectRole('operator')">
-            <div class="role-card-label">Digital Operator</div>
-            <div class="role-card-desc">I am a skilled professional seeking curated, professional opportunities.</div>
-          </div>
+          <button class="role-card" id="roleHiring" type="button" onclick="selectRole('hiring')">
+            <span class="role-card-label">Hiring Partner</span>
+            <span class="role-card-desc">I need vetted gig operators for contracts, sprints, or retainers.</span>
+          </button>
+          <button class="role-card" id="roleOperator" type="button" onclick="selectRole('operator')">
+            <span class="role-card-label">Digital Operator</span>
+            <span class="role-card-desc">I want access to higher-standard placement opportunities.</span>
+          </button>
         </div>
-        <button class="btn-primary btn-ui" style="width:100%; text-align:center;" onclick="goToStep2()">Continue</button>
-        <p class="modal-reassurance">AI is leverage. Your craft stays central.</p>
+        <button class="btn btn--primary" style="width:100%;" onclick="goToStep2()">Continue</button>
       </div>
 
-      <!-- Step 2: Form (Hiring) -->
       <div id="step2Hiring" style="display:none;">
         <h2 class="modal-title">Hiring Partner Access</h2>
-        <p class="modal-sub">Tell us about your organization and what you're building.</p>
+        <p class="modal-sub">Tell us what you need to ship.</p>
         <div class="form-group">
-          <label class="form-label">Full Name</label>
+          <label class="form-label" for="hName">Full Name</label>
           <input class="form-input" id="hName" type="text" placeholder="Your name" />
           <span class="form-error" id="hNameErr">Please enter your name.</span>
         </div>
         <div class="form-group">
-          <label class="form-label">Work Email</label>
+          <label class="form-label" for="hEmail">Work Email</label>
           <input class="form-input" id="hEmail" type="email" placeholder="you@company.com" />
           <span class="form-error" id="hEmailErr">Please enter a valid email.</span>
         </div>
         <div class="form-group">
-          <label class="form-label">Organization</label>
+          <label class="form-label" for="hOrg">Organization</label>
           <input class="form-input" id="hOrg" type="text" placeholder="Company or project name" />
           <span class="form-error" id="hOrgErr">Please enter your organization.</span>
         </div>
         <div class="form-group">
-          <label class="form-label">Primary Hiring Need</label>
+          <label class="form-label" for="hNeed">Primary Hiring Need</label>
           <select class="form-select" id="hNeed">
             <option value="">Select a track</option>
             <option>Growth</option>
@@ -704,26 +240,24 @@
           </select>
           <span class="form-error" id="hNeedErr">Please select a track.</span>
         </div>
-        <button class="btn-primary btn-ui" style="width:100%; text-align:center;" onclick="submitForm('hiring')">Request Access</button>
-        <p class="modal-reassurance">Structured matching. No open bidding.</p>
+        <button class="btn btn--primary" style="width:100%;" onclick="submitForm('hiring')">Request Placement Access</button>
       </div>
 
-      <!-- Step 2: Form (Operator) -->
       <div id="step2Operator" style="display:none;">
-        <h2 class="modal-title">Digital Operator Review</h2>
-        <p class="modal-sub">Assessment required. We'll be in touch with next steps.</p>
+        <h2 class="modal-title">Operator Selection Application</h2>
+        <p class="modal-sub">Assessment required. Limited intake.</p>
         <div class="form-group">
-          <label class="form-label">Full Name</label>
+          <label class="form-label" for="oName">Full Name</label>
           <input class="form-input" id="oName" type="text" placeholder="Your name" />
           <span class="form-error" id="oNameErr">Please enter your name.</span>
         </div>
         <div class="form-group">
-          <label class="form-label">Email</label>
+          <label class="form-label" for="oEmail">Email</label>
           <input class="form-input" id="oEmail" type="email" placeholder="you@email.com" />
           <span class="form-error" id="oEmailErr">Please enter a valid email.</span>
         </div>
         <div class="form-group">
-          <label class="form-label">Domain Track</label>
+          <label class="form-label" for="oTrack">Domain Track</label>
           <select class="form-select" id="oTrack">
             <option value="">Select your track</option>
             <option>Growth</option>
@@ -735,7 +269,7 @@
           <span class="form-error" id="oTrackErr">Please select your track.</span>
         </div>
         <div class="form-group">
-          <label class="form-label">Years of Experience</label>
+          <label class="form-label" for="oExp">Years of Experience</label>
           <select class="form-select" id="oExp">
             <option value="">Select range</option>
             <option>1–2 years</option>
@@ -745,28 +279,21 @@
           </select>
           <span class="form-error" id="oExpErr">Please select your experience range.</span>
         </div>
-        <button class="btn-primary btn-ui" style="width:100%; text-align:center;" onclick="submitForm('operator')">Submit for Review</button>
-        <p class="modal-reassurance">AI is leverage. Your craft stays central.</p>
+        <button class="btn btn--primary" style="width:100%;" onclick="submitForm('operator')">Apply for Operator Selection</button>
       </div>
 
-      <!-- Success State -->
       <div id="stepSuccess" style="display:none;">
         <div class="success-state">
           <div class="success-icon">◎</div>
           <h2 class="success-title">You're on the list.</h2>
-          <p class="success-body">
-            We review submissions in order of receipt, within our structured intake process. You'll hear from us when your batch opens. Workbase is built on standards — that applies to how we respond to you, too.
-          </p>
+          <p class="success-body">We review submissions in order of receipt and respond by intake batch.</p>
           <button class="btn-copy-json" onclick="copyJSON()">Copy Submission JSON</button>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- ── SCRIPTS ── -->
   <script>
-    /* ─── Modal Logic ─── */
     let selectedRole = null;
     let submissionData = null;
 
@@ -775,9 +302,7 @@
       document.getElementById('modalOverlay').classList.add('active');
       document.body.style.overflow = 'hidden';
       showStep1();
-      if (defaultRole) {
-        selectRole(defaultRole);
-      }
+      if (defaultRole) selectRole(defaultRole);
     }
 
     function closeModal() {
@@ -812,11 +337,7 @@
         return;
       }
       document.getElementById('step1').style.display = 'none';
-      if (selectedRole === 'hiring') {
-        document.getElementById('step2Hiring').style.display = 'block';
-      } else {
-        document.getElementById('step2Operator').style.display = 'block';
-      }
+      document.getElementById(selectedRole === 'hiring' ? 'step2Hiring' : 'step2Operator').style.display = 'block';
     }
 
     function validateEmail(email) {
@@ -829,51 +350,35 @@
 
     function submitForm(type) {
       let valid = true;
-
       if (type === 'hiring') {
         const name = document.getElementById('hName').value.trim();
         const email = document.getElementById('hEmail').value.trim();
         const org = document.getElementById('hOrg').value.trim();
         const need = document.getElementById('hNeed').value;
-
         setError('hNameErr', !name);
         setError('hEmailErr', !validateEmail(email));
         setError('hOrgErr', !org);
         setError('hNeedErr', !need);
-
-        if (!name || !validateEmail(email) || !org || !need) { valid = false; }
-
-        if (valid) {
-          submissionData = { role: 'Hiring Partner', name, email, organization: org, hiringNeed: need, timestamp: new Date().toISOString() };
-        }
+        if (!name || !validateEmail(email) || !org || !need) valid = false;
+        if (valid) submissionData = { role: 'Hiring Partner', name, email, organization: org, hiringNeed: need, timestamp: new Date().toISOString() };
       } else {
         const name = document.getElementById('oName').value.trim();
         const email = document.getElementById('oEmail').value.trim();
         const track = document.getElementById('oTrack').value;
         const exp = document.getElementById('oExp').value;
-
         setError('oNameErr', !name);
         setError('oEmailErr', !validateEmail(email));
         setError('oTrackErr', !track);
         setError('oExpErr', !exp);
-
-        if (!name || !validateEmail(email) || !track || !exp) { valid = false; }
-
-        if (valid) {
-          submissionData = { role: 'Digital Operator', name, email, track, experience: exp, timestamp: new Date().toISOString() };
-        }
+        if (!name || !validateEmail(email) || !track || !exp) valid = false;
+        if (valid) submissionData = { role: 'Digital Operator', name, email, track, experience: exp, timestamp: new Date().toISOString() };
       }
-
       if (!valid) return;
-
-      // Persist
       try {
         const existing = JSON.parse(localStorage.getItem('workbase_waitlist') || '[]');
         existing.push(submissionData);
         localStorage.setItem('workbase_waitlist', JSON.stringify(existing));
-      } catch(e) {}
-
-      // Show success
+      } catch (e) {}
       document.getElementById('step2Hiring').style.display = 'none';
       document.getElementById('step2Operator').style.display = 'none';
       document.getElementById('stepSuccess').style.display = 'block';
@@ -881,16 +386,12 @@
 
     function copyJSON() {
       if (!submissionData) return;
-      navigator.clipboard.writeText(JSON.stringify(submissionData, null, 2))
-        .then(() => {
-          const btn = document.querySelector('.btn-copy-json');
-          btn.textContent = 'Copied!';
-          setTimeout(() => btn.textContent = 'Copy Submission JSON', 2000);
-        });
+      navigator.clipboard.writeText(JSON.stringify(submissionData, null, 2)).then(() => {
+        const btn = document.querySelector('.btn-copy-json');
+        btn.textContent = 'Copied!';
+        setTimeout(() => (btn.textContent = 'Copy Submission JSON'), 2000);
+      });
     }
-
-
-
   </script>
   <script src="animations.js"></script>
 </body>

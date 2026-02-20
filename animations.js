@@ -1,55 +1,67 @@
-(() => {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const revealItems = document.querySelectorAll('.reveal');
+document.addEventListener('DOMContentLoaded', () => {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealNodes = Array.from(document.querySelectorAll('.reveal'));
+  const staggerNodes = Array.from(document.querySelectorAll('.reveal-stagger'));
 
-  if (prefersReducedMotion) {
-    revealItems.forEach((el) => el.classList.add('is-visible'));
+  if (reducedMotion) {
+    revealNodes.forEach((node) => node.classList.add('is-visible'));
     return;
   }
 
-  const revealObserver = new IntersectionObserver((entries, observer) => {
+  const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
+      const node = entry.target;
 
-      const el = entry.target;
-      if (el.classList.contains('reveal-stagger')) {
-        const children = Array.from(el.children).filter((child) => child.classList.contains('reveal'));
+      if (node.classList.contains('reveal-stagger')) {
+        const children = Array.from(node.children).filter((child) => child.classList.contains('reveal'));
         children.forEach((child, index) => {
-          child.style.transitionDelay = `${Math.min(index * 80, 520)}ms`;
+          child.style.transitionDelay = `${Math.min(index * 90, 540)}ms`;
           child.classList.add('is-visible');
         });
+      } else {
+        node.classList.add('is-visible');
       }
 
-      el.classList.add('is-visible');
-      observer.unobserve(el);
+      obs.unobserve(node);
     });
-  }, {
-    threshold: 0.16,
-    rootMargin: '0px 0px -8% 0px'
+  }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+
+  revealNodes.forEach((node) => {
+    if (node.closest('.hero')) {
+      node.classList.add('is-visible');
+      return;
+    }
+    observer.observe(node);
   });
 
-  revealItems.forEach((el) => revealObserver.observe(el));
+  staggerNodes.forEach((node) => {
+    if (node.closest('.hero')) return;
+    observer.observe(node);
+  });
 
-  const parallaxShapes = document.querySelectorAll('.parallax-shape');
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+  const parallaxShapes = Array.from(document.querySelectorAll('.parallax-shape'));
   if (!parallaxShapes.length) return;
 
-  let rafId = null;
-  const clamp = (val, min, max) => Math.min(max, Math.max(min, val));
+  let latestScrollY = window.scrollY || 0;
+  let ticking = false;
 
   const updateParallax = () => {
-    const scrollY = window.scrollY || window.pageYOffset;
-    parallaxShapes.forEach((shape, i) => {
-      const factor = 0.05 + i * 0.025;
-      const offset = clamp(scrollY * factor, -30, 30);
+    parallaxShapes.forEach((shape) => {
+      const speed = Number(shape.dataset.speed || 0.06);
+      const offset = clamp(latestScrollY * speed, -36, 36);
       shape.style.transform = `translate3d(0, ${offset}px, 0)`;
     });
-    rafId = null;
+    ticking = false;
   };
 
   window.addEventListener('scroll', () => {
-    if (rafId) return;
-    rafId = requestAnimationFrame(updateParallax);
+    latestScrollY = window.scrollY || 0;
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(updateParallax);
   }, { passive: true });
 
   updateParallax();
-})();
+});
