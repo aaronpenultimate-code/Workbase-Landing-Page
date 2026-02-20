@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workbase — For Those Building What's Next</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --off-white: #F7F6F2;
+      --charcoal: #1A1A1A;
+      --charcoal-mid: #3A3A3A;
+      --charcoal-light: #6B6B6B;
+      --accent: #0D4F5C;
+      --accent-light: #1A6B7A;
+      --accent-ultra-light: #EDF4F5;
+      --border: #E2E0D8;
+      --border-soft: #ECEAE4;
+      --white: #FFFFFF;
+      --font-display: 'Fraunces', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--off-white);
+      color: var(--charcoal);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      .gsap-anim { opacity: 1 !important; transform: none !important; }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(247, 246, 242, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .nav-logo img { height: 28px; width: auto; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--charcoal-light);
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--charcoal); }
+
+    .nav-cta {
+      background: var(--charcoal);
+      color: var(--white) !important;
+      padding: 10px 20px !important;
+      border-radius: 4px;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--accent) !important; }
+
+    /* ── SECTIONS ── */
+    section { padding: 96px 48px; max-width: 1200px; margin: 0 auto; }
+
+    /* ── HERO ── */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 120px;
+      padding-bottom: 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 7vw, 88px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      max-width: 800px;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--charcoal-light);
+      max-width: 520px;
+      line-height: 1.65;
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cta-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: 4px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      border: 1.5px solid var(--accent);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      background: transparent;
+      color: var(--charcoal);
+      padding: 14px 28px;
+      border-radius: 4px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      border: 1.5px solid var(--border);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--charcoal);
+      transform: translateY(-1px);
+    }
+
+    .btn-microcopy {
+      font-size: 11px;
+      color: var(--charcoal-light);
+      letter-spacing: 0.03em;
+    }
+
+    /* ── CREDIBILITY STRIP ── */
+    .credibility-strip {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 0;
+    }
+
+    .cred-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--charcoal-light);
+      letter-spacing: 0.04em;
+      padding-right: 32px;
+      margin-right: 32px;
+      border-right: 1px solid var(--border);
+    }
+
+    .cred-item:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+
+    .cred-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border-soft);
+      margin: 0 48px;
+    }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .section-headline {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4.5vw, 52px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+    }
+
+    .section-headline em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .section-body {
+      font-size: 16px;
+      color: var(--charcoal-light);
+      line-height: 1.7;
+      max-width: 560px;
+      font-weight: 300;
+    }
+
+    /* ── HIRING PARTNERS ── */
+    .hiring-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .hiring-left {}
+
+    .hiring-emotional {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--charcoal-mid);
+      margin-bottom: 32px;
+      line-height: 1.4;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .feature-list li {
+      display: flex;
+      gap: 14px;
+      font-size: 14px;
+      color: var(--charcoal-mid);
+      line-height: 1.55;
+      font-weight: 300;
+    }
+
+    .feature-list li::before {
+      content: '—';
+      color: var(--accent);
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── OPERATOR TRACKS ── */
+    .tracks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .track-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 28px 24px;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+
+    .track-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .track-icon {
+      font-size: 20px;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .track-name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+
+    .track-desc {
+      font-size: 13px;
+      color: var(--charcoal-light);
+      line-height: 1.55;
+      font-weight: 300;
+      margin-bottom: 12px;
+    }
+
+    .track-outcome {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-ultra-light);
+      padding: 4px 8px;
+      border-radius: 2px;
+    }
+
+    /* ── AI SECTION ── */
+    .ai-divider-statement {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--charcoal);
+      max-width: 640px;
+      margin-bottom: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ai-divider-statement span {
+      display: block;
+    }
+
+    .ai-divider-statement span:last-child {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .ai-pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .ai-pillar {
+      padding: 24px;
+      border-left: 2px solid var(--border);
+    }
+
+    .ai-pillar-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .ai-pillar-text {
+      font-size: 14px;
+      color: var(--charcoal-mid);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ── SELECTIVE SECTION ── */
+    .selective-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0;
+      margin-top: 48px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .how-step {
+      padding: 32px 28px;
+      border-right: 1px solid var(--border);
+      background: var(--white);
+      transition: background 0.2s;
+    }
+
+    .how-step:last-child { border-right: none; }
+
+    .how-step-num {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .how-step-title {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .how-step-desc {
+      font-size: 13px;
+      color: var(--charcoal-light);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ── AUTHORITY BLOCK ── */
+    .authority-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 56px 56px;
+    }
+
+    .authority-body {
+      font-size: 18px;
+      color: var(--charcoal-mid);
+      line-height: 1.65;
+      max-width: 560px;
+      font-weight: 300;
+      margin-bottom: 40px;
+    }
+
+    .authority-bullets {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .authority-bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--charcoal-mid);
+      font-weight: 300;
+    }
+
+    .authority-bullet-mark {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    /* ── FINAL CTA ── */
+    .final-cta-section {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .scarcity-line {
+      font-size: 15px;
+      color: var(--charcoal-mid);
+      margin-bottom: 8px;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .quality-line {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: var(--charcoal-light);
+      margin-bottom: 40px;
+      text-transform: uppercase;
+    }
+
+    .final-cta-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 40px 48px;
+      border-top: 1px solid var(--border-soft);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: var(--charcoal-light);
+      letter-spacing: 0.03em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 12px;
+      color: var(--charcoal-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--charcoal); }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(26, 26, 26, 0.6);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      max-width: 520px;
+      width: 100%;
+      padding: 48px;
+      position: relative;
+      transform: translateY(16px);
+      transition: transform 0.3s;
+    }
+
+    .modal-overlay.active .modal {
+      transform: translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: var(--charcoal-light);
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+
+    .modal-close:hover { color: var(--charcoal); }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+
+    .modal-sub {
+      font-size: 14px;
+      color: var(--charcoal-light);
+      margin-bottom: 32px;
+      font-weight: 300;
+    }
+
+    /* Step 1 — Role Selection */
+    .role-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .role-card {
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      padding: 20px 16px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      text-align: left;
+    }
+
+    .role-card:hover, .role-card.selected {
+      border-color: var(--accent);
+      background: var(--accent-ultra-light);
+    }
+
+    .role-card-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+
+    .role-card-desc {
+      font-size: 12px;
+      color: var(--charcoal-light);
+      font-weight: 300;
+    }
+
+    /* Step 2 — Form */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--charcoal-mid);
+      letter-spacing: 0.04em;
+    }
+
+    .form-input, .form-select {
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      background: var(--white);
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--charcoal);
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus, .form-select:focus {
+      border-color: var(--accent);
+    }
+
+    .form-error {
+      font-size: 11px;
+      color: #C0392B;
+      display: none;
+    }
+
+    .form-error.visible { display: block; }
+
+    .modal-reassurance {
+      font-size: 11px;
+      color: var(--charcoal-light);
+      margin-top: 16px;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* Success State */
+    .success-state {
+      text-align: center;
+      padding: 16px 0;
+    }
+
+    .success-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .success-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+    }
+
+    .success-body {
+      font-size: 14px;
+      color: var(--charcoal-light);
+      line-height: 1.65;
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+
+    .btn-copy-json {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--charcoal-mid);
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .btn-copy-json:hover { border-color: var(--charcoal); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      section { padding: 72px 24px; }
+      .section-divider { margin: 0 24px; }
+      .hiring-section, .selective-section {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .how-steps {
+        grid-template-columns: 1fr;
+      }
+      .how-step { border-right: none; border-bottom: 1px solid var(--border); }
+      .how-step:last-child { border-bottom: none; }
+      .cta-row { flex-direction: column; }
+      .authority-section { padding: 36px 28px; }
+      .role-cards { grid-template-columns: 1fr; }
+      .modal { padding: 32px 24px; }
+      footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+      .credibility-strip {
+        gap: 16px 0;
+      }
+      .cred-item {
+        border-right: none;
+        padding-right: 0;
+        margin-right: 0;
+        width: 50%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">
+      <img src="Workbase_Logo.svg" alt="Workbase" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#hiring">Hiring Partners</a></li>
+      <li><a href="#operators">Digital Operators</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#waitlist" class="nav-cta" onclick="openModal(event, 'hiring')">Request Access</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero-section" id="home">
+    <p class="hero-eyebrow gsap-anim" id="hero-eyebrow">Nigeria-Based. Global Standard.</p>
+    <h1 class="hero-headline gsap-anim" id="hero-headline">
+      For Those Building<br /><em>What's Next.</em>
+    </h1>
+    <p class="hero-sub gsap-anim" id="hero-sub">
+      Workbase connects curated digital professionals with the organizations that demand precision. Selective intake. Structured alignment. Accountable delivery.
+    </p>
+
+    <div class="hero-ctas gsap-anim" id="hero-ctas">
+      <div class="cta-row">
+        <div class="cta-group">
+          <a href="#waitlist" class="btn-primary" onclick="openModal(event, 'hiring')">Request Hiring Access</a>
+          <span class="btn-microcopy">Structured matching. No open bidding.</span>
+        </div>
+        <div class="cta-group">
+          <a href="#waitlist" class="btn-secondary" onclick="openModal(event, 'operator')">Submit for Digital Operator Review</a>
+          <span class="btn-microcopy">Assessment required. Limited intake.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="credibility-strip gsap-anim" id="hero-cred">
+      <div class="cred-item"><span class="cred-dot"></span>5 Curated Operator Tracks</div>
+      <div class="cred-item"><span class="cred-dot"></span>Performance-Assessed Talent</div>
+      <div class="cred-item"><span class="cred-dot"></span>AI-Empowered Execution</div>
+      <div class="cred-item"><span class="cred-dot"></span>Nigeria-Based. Global Standard.</div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ── HIRING PARTNERS ── -->
+  <section id="hiring">
+    <div class="hiring-section">
+      <div class="hiring-left">
+        <span class="section-label gsap-anim">Hiring Partners</span>
+        <h2 class="section-headline gsap-anim">
+          Stop navigating noise.<br /><em>Protect momentum.</em>
+        </h2>
+        <p class="hiring-emotional gsap-anim">"You're not looking for help.<br />You're protecting momentum."</p>
+        <p class="section-body gsap-anim">
+          Open talent markets are unpredictable. Vetting takes time you don't have. A wrong hire costs more than the role itself. Workbase replaces ambiguity with structure — so you spend less time evaluating and more time executing.
+        </p>
+      </div>
+      <div class="hiring-right">
+        <ul class="feature-list">
+          <li class="gsap-anim">Curated introductions — not an open inbox of applications.</li>
+          <li class="gsap-anim">Every Digital Operator is assessed before introduction.</li>
+          <li class="gsap-anim">Domain-specific tracks ensure relevant alignment to your project.</li>
+          <li class="gsap-anim">Accountability is designed in from day one — not added later.</li>
+          <li class="gsap-anim">Faster starts. Fewer course corrections. Better outcomes.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ── DIGITAL OPERATORS ── -->
+  <section id="operators">
+    <span class="section-label gsap-anim">Digital Operators</span>
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;" class="hiring-section">
+      <div>
+        <h2 class="section-headline gsap-anim">
+          Your craft deserves<br /><em>the right stage.</em>
+        </h2>
+        <p class="hiring-emotional gsap-anim">"You've done the work.<br />You deserve the stage."</p>
+        <p class="section-body gsap-anim">
+          Price competition diminishes skilled professionals. You've built real capability — and that deserves to be recognized, not discounted. Workbase is built on standards that protect your positioning, not erode it.
+        </p>
+      </div>
+      <div>
+        <ul class="feature-list">
+          <li class="gsap-anim">No bidding wars. Your work speaks through a structured process.</li>
+          <li class="gsap-anim">Assessment creates credibility — you earn your place, and that means something.</li>
+          <li class="gsap-anim">Matched to opportunities aligned with your domain and goals.</li>
+          <li class="gsap-anim">AI fluency is a track requirement — amplify your craft, not replace it.</li>
+          <li class="gsap-anim">Be part of the standard, not the noise.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ── OPERATOR TRACKS ── -->
+  <section id="tracks">
+    <span class="section-label gsap-anim">Operator Tracks</span>
+    <h2 class="section-headline gsap-anim">Five domains.<br /><em>One standard.</em></h2>
+    <p class="section-body gsap-anim">Workbase organizes Digital Operators into domain-specific tracks. Each track has defined competency expectations, AI integration requirements, and performance benchmarks.</p>
+
+    <div class="tracks-grid">
+      <div class="track-card gsap-anim">
+        <span class="track-icon">◈</span>
+        <div class="track-name">Growth</div>
+        <p class="track-desc">Strategy, performance marketing, brand positioning, and audience development — with measurable accountability.</p>
+        <span class="track-outcome">Audience growth</span>
+      </div>
+      <div class="track-card gsap-anim">
+        <span class="track-icon">◉</span>
+        <div class="track-name">Revenue</div>
+        <p class="track-desc">Sales enablement, funnel design, conversion strategy, and commercial execution at a professional standard.</p>
+        <span class="track-outcome">Conversion lift</span>
+      </div>
+      <div class="track-card gsap-anim">
+        <span class="track-icon">◳</span>
+        <div class="track-name">Systems</div>
+        <p class="track-desc">Operations, automation, workflow architecture, and infrastructure — built for reliability and scale.</p>
+        <span class="track-outcome">Operational efficiency</span>
+      </div>
+      <div class="track-card gsap-anim">
+        <span class="track-icon">◎</span>
+        <div class="track-name">Retention</div>
+        <p class="track-desc">Community management, customer success, lifecycle strategy, and relationship depth that compounds over time.</p>
+        <span class="track-outcome">Customer trust</span>
+      </div>
+      <div class="track-card gsap-anim">
+        <span class="track-icon">◬</span>
+        <div class="track-name">Intelligence</div>
+        <p class="track-desc">Research, data analysis, insight design, and decision support — turning information into strategic clarity.</p>
+        <span class="track-outcome">Better decisions</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ── AI POSITIONING ── -->
+  <section id="ai">
+    <div class="ai-divider-statement gsap-anim">
+      <span>The future does not eliminate professionals.</span>
+      <span>It filters them.</span>
+    </div>
+
+    <p class="section-body gsap-anim" style="margin-bottom: 0;">
+      AI fluency is not a shortcut — it is a multiplier. The professionals who thrive are those who combine genuine domain expertise with the precision of modern tooling. Workbase selects for exactly that combination.
+    </p>
+
+    <div class="ai-pillars">
+      <div class="ai-pillar gsap-anim">
+        <div class="ai-pillar-label">Human Judgment</div>
+        <div class="ai-pillar-text">Every decision, strategy, and creative output is still driven by a skilled professional. AI does not replace the center.</div>
+      </div>
+      <div class="ai-pillar gsap-anim">
+        <div class="ai-pillar-label">Precision & Speed</div>
+        <div class="ai-pillar-text">AI-empowered operators move faster, iterate more precisely, and deliver outputs at a higher level of quality.</div>
+      </div>
+      <div class="ai-pillar gsap-anim">
+        <div class="ai-pillar-label">Human Standards</div>
+        <div class="ai-pillar-text">Our vetting, our tracks, and our accountability are defined by people — not generated by an algorithm.</div>
+      </div>
+      <div class="ai-pillar gsap-anim">
+        <div class="ai-pillar-label">Technology as Infrastructure</div>
+        <div class="ai-pillar-text">AI is the tool. The professional is the operator. That distinction is not a detail — it is the model.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ── SELECTIVE BY DESIGN ── -->
+  <section id="selective">
+    <div class="selective-section">
+      <div>
+        <span class="section-label gsap-anim">Our Approach</span>
+        <h2 class="section-headline gsap-anim">Selective<br /><em>by Design.</em></h2>
+      </div>
+      <div>
+        <p class="section-body gsap-anim" style="max-width: 100%; margin-bottom: 24px;">
+          Workbase does not scale by accepting everyone. We scale by deepening the quality of every connection. Controlled intake is not a constraint — it is the standard that makes each match meaningful.
+        </p>
+        <p class="section-body gsap-anim" style="max-width: 100%;">
+          Hiring Partners receive introductions, not a list. Digital Operators are presented, not submitted to an open pool. Every engagement begins with alignment — not assumption.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ── HOW IT WORKS ── -->
+  <section id="how">
+    <span class="section-label gsap-anim">Process</span>
+    <h2 class="section-headline gsap-anim">How Workbase Works</h2>
+    <p class="section-body gsap-anim">Four steps. No ambiguity. Clear expectations from first contact to execution.</p>
+
+    <div class="how-steps">
+      <div class="how-step gsap-anim">
+        <span class="how-step-num">01</span>
+        <div class="how-step-title">Apply or Request Access</div>
+        <p class="how-step-desc">Digital Operators apply. Hiring Partners request access. The process begins with intention — not a casual signup.</p>
+      </div>
+      <div class="how-step gsap-anim">
+        <span class="how-step-num">02</span>
+        <div class="how-step-title">Structured Vetting & Alignment</div>
+        <p class="how-step-desc">Operators are assessed against track standards. Expectations for both sides are clarified before any introduction is made.</p>
+      </div>
+      <div class="how-step gsap-anim">
+        <span class="how-step-num">03</span>
+        <div class="how-step-title">Curated Matching</div>
+        <p class="how-step-desc">Aligned introductions based on domain, working style, and stated goals. Quality over quantity, every time.</p>
+      </div>
+      <div class="how-step gsap-anim">
+        <span class="how-step-num">04</span>
+        <div class="how-step-title">Execute with Accountability</div>
+        <p class="how-step-desc">Work begins with shared clarity — not guesswork. Accountability is built in from the first conversation.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ── AUTHORITY BLOCK ── -->
+  <section id="authority" style="padding-top: 72px; padding-bottom: 72px;">
+    <div class="authority-section gsap-anim">
+      <span class="section-label">Built for Global Standards.</span>
+      <p class="authority-body">
+        Workbase is building the infrastructure layer between Nigerian digital excellence and global demand.
+      </p>
+      <div class="authority-bullets">
+        <div class="authority-bullet">
+          <span class="authority-bullet-mark"></span>
+          Selective intake model — not open-door enrollment
+        </div>
+        <div class="authority-bullet">
+          <span class="authority-bullet-mark"></span>
+          Domain-specific operator tracks with defined competency standards
+        </div>
+        <div class="authority-bullet">
+          <span class="authority-bullet-mark"></span>
+          Structured vetting process — assessment before introduction
+        </div>
+        <div class="authority-bullet">
+          <span class="authority-bullet-mark"></span>
+          Founding member onboarding phase — now open
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ── FINAL CTA ── -->
+  <section id="waitlist" style="text-align: center; padding: 96px 48px;">
+    <div class="final-cta-section">
+      <span class="section-label gsap-anim" style="display: block; text-align: center;">Join the Waitlist</span>
+      <h2 class="section-headline gsap-anim" style="text-align: center; max-width: 520px; margin: 0 auto 24px;">
+        The right time<br />to begin is <em>now.</em>
+      </h2>
+      <p class="scarcity-line gsap-anim">
+        We onboard in controlled batches to protect standards and alignment.
+      </p>
+      <p class="quality-line gsap-anim">Quality scales through structure — not volume.</p>
+      <div class="final-cta-buttons gsap-anim">
+        <div class="cta-group" style="align-items: center;">
+          <a href="#" class="btn-primary" onclick="openModal(event, 'hiring')">Request Hiring Access</a>
+          <span class="btn-microcopy">Structured matching. No open bidding.</span>
+        </div>
+        <div class="cta-group" style="align-items: center;">
+          <a href="#" class="btn-secondary" onclick="openModal(event, 'operator')">Submit for Digital Operator Review</a>
+          <span class="btn-microcopy">Assessment required. Limited intake.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <span class="footer-copy">© 2025 Workbase. Nigeria-Based. Global Standard.</span>
+    <ul class="footer-links">
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=edhugoaaron@gmail.com">Contact</a></li>
+    </ul>
+  </footer>
+
+  <!-- ── MODAL ── -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+
+      <!-- Step 1: Role -->
+      <div id="step1">
+        <h2 class="modal-title" id="modalTitle">Join Workbase</h2>
+        <p class="modal-sub">Tell us how you intend to use the platform.</p>
+        <div class="role-cards">
+          <div class="role-card" id="roleHiring" onclick="selectRole('hiring')">
+            <div class="role-card-label">Hiring Partner</div>
+            <div class="role-card-desc">I need to engage skilled digital professionals for my project or organization.</div>
+          </div>
+          <div class="role-card" id="roleOperator" onclick="selectRole('operator')">
+            <div class="role-card-label">Digital Operator</div>
+            <div class="role-card-desc">I am a skilled professional seeking curated, professional opportunities.</div>
+          </div>
+        </div>
+        <button class="btn-primary" style="width:100%; text-align:center;" onclick="goToStep2()">Continue</button>
+        <p class="modal-reassurance">AI is leverage. Your craft stays central.</p>
+      </div>
+
+      <!-- Step 2: Form (Hiring) -->
+      <div id="step2Hiring" style="display:none;">
+        <h2 class="modal-title">Hiring Partner Access</h2>
+        <p class="modal-sub">Tell us about your organization and what you're building.</p>
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input class="form-input" id="hName" type="text" placeholder="Your name" />
+          <span class="form-error" id="hNameErr">Please enter your name.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Work Email</label>
+          <input class="form-input" id="hEmail" type="email" placeholder="you@company.com" />
+          <span class="form-error" id="hEmailErr">Please enter a valid email.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Organization</label>
+          <input class="form-input" id="hOrg" type="text" placeholder="Company or project name" />
+          <span class="form-error" id="hOrgErr">Please enter your organization.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Primary Hiring Need</label>
+          <select class="form-select" id="hNeed">
+            <option value="">Select a track</option>
+            <option>Growth</option>
+            <option>Revenue</option>
+            <option>Systems</option>
+            <option>Retention</option>
+            <option>Intelligence</option>
+            <option>Multiple / Unsure</option>
+          </select>
+          <span class="form-error" id="hNeedErr">Please select a track.</span>
+        </div>
+        <button class="btn-primary" style="width:100%; text-align:center;" onclick="submitForm('hiring')">Request Access</button>
+        <p class="modal-reassurance">Structured matching. No open bidding.</p>
+      </div>
+
+      <!-- Step 2: Form (Operator) -->
+      <div id="step2Operator" style="display:none;">
+        <h2 class="modal-title">Digital Operator Review</h2>
+        <p class="modal-sub">Assessment required. We'll be in touch with next steps.</p>
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input class="form-input" id="oName" type="text" placeholder="Your name" />
+          <span class="form-error" id="oNameErr">Please enter your name.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" id="oEmail" type="email" placeholder="you@email.com" />
+          <span class="form-error" id="oEmailErr">Please enter a valid email.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Domain Track</label>
+          <select class="form-select" id="oTrack">
+            <option value="">Select your track</option>
+            <option>Growth</option>
+            <option>Revenue</option>
+            <option>Systems</option>
+            <option>Retention</option>
+            <option>Intelligence</option>
+          </select>
+          <span class="form-error" id="oTrackErr">Please select your track.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Years of Experience</label>
+          <select class="form-select" id="oExp">
+            <option value="">Select range</option>
+            <option>1–2 years</option>
+            <option>3–5 years</option>
+            <option>6–10 years</option>
+            <option>10+ years</option>
+          </select>
+          <span class="form-error" id="oExpErr">Please select your experience range.</span>
+        </div>
+        <button class="btn-primary" style="width:100%; text-align:center;" onclick="submitForm('operator')">Submit for Review</button>
+        <p class="modal-reassurance">AI is leverage. Your craft stays central.</p>
+      </div>
+
+      <!-- Success State -->
+      <div id="stepSuccess" style="display:none;">
+        <div class="success-state">
+          <div class="success-icon">◎</div>
+          <h2 class="success-title">You're on the list.</h2>
+          <p class="success-body">
+            We review submissions in order of receipt, within our structured intake process. You'll hear from us when your batch opens. Workbase is built on standards — that applies to how we respond to you, too.
+          </p>
+          <button class="btn-copy-json" onclick="copyJSON()">Copy Submission JSON</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── SCRIPTS ── -->
+  <script>
+    /* ─── Modal Logic ─── */
+    let selectedRole = null;
+    let submissionData = null;
+
+    function openModal(e, defaultRole) {
+      if (e) e.preventDefault();
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+      showStep1();
+      if (defaultRole) {
+        selectRole(defaultRole);
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('modalOverlay').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    function showStep1() {
+      document.getElementById('step1').style.display = 'block';
+      document.getElementById('step2Hiring').style.display = 'none';
+      document.getElementById('step2Operator').style.display = 'none';
+      document.getElementById('stepSuccess').style.display = 'none';
+    }
+
+    function selectRole(role) {
+      selectedRole = role;
+      document.getElementById('roleHiring').classList.toggle('selected', role === 'hiring');
+      document.getElementById('roleOperator').classList.toggle('selected', role === 'operator');
+    }
+
+    function goToStep2() {
+      if (!selectedRole) {
+        alert('Please select your role to continue.');
+        return;
+      }
+      document.getElementById('step1').style.display = 'none';
+      if (selectedRole === 'hiring') {
+        document.getElementById('step2Hiring').style.display = 'block';
+      } else {
+        document.getElementById('step2Operator').style.display = 'block';
+      }
+    }
+
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function setError(id, visible) {
+      document.getElementById(id).classList.toggle('visible', visible);
+    }
+
+    function submitForm(type) {
+      let valid = true;
+
+      if (type === 'hiring') {
+        const name = document.getElementById('hName').value.trim();
+        const email = document.getElementById('hEmail').value.trim();
+        const org = document.getElementById('hOrg').value.trim();
+        const need = document.getElementById('hNeed').value;
+
+        setError('hNameErr', !name);
+        setError('hEmailErr', !validateEmail(email));
+        setError('hOrgErr', !org);
+        setError('hNeedErr', !need);
+
+        if (!name || !validateEmail(email) || !org || !need) { valid = false; }
+
+        if (valid) {
+          submissionData = { role: 'Hiring Partner', name, email, organization: org, hiringNeed: need, timestamp: new Date().toISOString() };
+        }
+      } else {
+        const name = document.getElementById('oName').value.trim();
+        const email = document.getElementById('oEmail').value.trim();
+        const track = document.getElementById('oTrack').value;
+        const exp = document.getElementById('oExp').value;
+
+        setError('oNameErr', !name);
+        setError('oEmailErr', !validateEmail(email));
+        setError('oTrackErr', !track);
+        setError('oExpErr', !exp);
+
+        if (!name || !validateEmail(email) || !track || !exp) { valid = false; }
+
+        if (valid) {
+          submissionData = { role: 'Digital Operator', name, email, track, experience: exp, timestamp: new Date().toISOString() };
+        }
+      }
+
+      if (!valid) return;
+
+      // Persist
+      try {
+        const existing = JSON.parse(localStorage.getItem('workbase_waitlist') || '[]');
+        existing.push(submissionData);
+        localStorage.setItem('workbase_waitlist', JSON.stringify(existing));
+      } catch(e) {}
+
+      // Show success
+      document.getElementById('step2Hiring').style.display = 'none';
+      document.getElementById('step2Operator').style.display = 'none';
+      document.getElementById('stepSuccess').style.display = 'block';
+    }
+
+    function copyJSON() {
+      if (!submissionData) return;
+      navigator.clipboard.writeText(JSON.stringify(submissionData, null, 2))
+        .then(() => {
+          const btn = document.querySelector('.btn-copy-json');
+          btn.textContent = 'Copied!';
+          setTimeout(() => btn.textContent = 'Copy Submission JSON', 2000);
+        });
+    }
+
+    /* ─── GSAP Animations ─── */
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Set initial states
+      gsap.set('#nav', { opacity: 0, y: -8 });
+      gsap.set('#hero-eyebrow', { opacity: 0, y: 12 });
+      gsap.set('#hero-headline', { opacity: 0, y: 20 });
+      gsap.set('#hero-sub', { opacity: 0, y: 16 });
+      gsap.set('#hero-ctas', { opacity: 0, y: 14 });
+      gsap.set('#hero-cred', { opacity: 0, y: 10 });
+
+      // Page load sequence
+      const tl = gsap.timeline({ delay: 0.1 });
+      tl.to('#nav', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
+        .to('#hero-eyebrow', { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.3')
+        .to('#hero-headline', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.4')
+        .to('#hero-sub', { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.4')
+        .to('#hero-ctas', { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.4')
+        .to('#hero-cred', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3');
+
+      // Scroll-triggered reveals
+      function revealOnScroll(selector, stagger = false) {
+        const elements = document.querySelectorAll(selector);
+        if (!elements.length) return;
+
+        if (stagger) {
+          gsap.set(elements, { opacity: 0, y: 16 });
+          ScrollTrigger.create({
+            trigger: elements[0].closest('section') || elements[0].parentElement,
+            start: 'top 80%',
+            onEnter: () => gsap.to(elements, {
+              opacity: 1, y: 0,
+              duration: 0.7,
+              ease: 'power2.out',
+              stagger: 0.09
+            })
+          });
+        } else {
+          elements.forEach(el => {
+            gsap.set(el, { opacity: 0, y: 14 });
+            ScrollTrigger.create({
+              trigger: el,
+              start: 'top 85%',
+              onEnter: () => gsap.to(el, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' })
+            });
+          });
+        }
+      }
+
+      // Section labels & headlines (individual)
+      document.querySelectorAll('.section-label, .section-headline, .section-body, .hiring-emotional, .ai-divider-statement, .scarcity-line, .quality-line').forEach(el => {
+        if (el.closest('#home')) return; // skip hero
+        gsap.set(el, { opacity: 0, y: 14 });
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 87%',
+          onEnter: () => gsap.to(el, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' })
+        });
+      });
+
+      // Feature list items — stagger per section
+      document.querySelectorAll('.feature-list').forEach(list => {
+        const items = list.querySelectorAll('li');
+        gsap.set(items, { opacity: 0, y: 12 });
+        ScrollTrigger.create({
+          trigger: list,
+          start: 'top 82%',
+          onEnter: () => gsap.to(items, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.08 })
+        });
+      });
+
+      // Track cards stagger
+      const trackCards = document.querySelectorAll('.track-card');
+      gsap.set(trackCards, { opacity: 0, y: 18 });
+      ScrollTrigger.create({
+        trigger: '.tracks-grid',
+        start: 'top 80%',
+        onEnter: () => gsap.to(trackCards, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', stagger: 0.1 })
+      });
+
+      // AI pillars stagger
+      const pillars = document.querySelectorAll('.ai-pillar');
+      gsap.set(pillars, { opacity: 0, y: 14 });
+      ScrollTrigger.create({
+        trigger: '.ai-pillars',
+        start: 'top 82%',
+        onEnter: () => gsap.to(pillars, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', stagger: 0.1 })
+      });
+
+      // How steps stagger
+      const howSteps = document.querySelectorAll('.how-step');
+      gsap.set(howSteps, { opacity: 0, y: 16 });
+      ScrollTrigger.create({
+        trigger: '.how-steps',
+        start: 'top 80%',
+        onEnter: () => gsap.to(howSteps, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', stagger: 0.12 })
+      });
+
+      // Authority block
+      const authBlock = document.querySelector('.authority-section');
+      if (authBlock) {
+        gsap.set(authBlock, { opacity: 0, y: 16 });
+        ScrollTrigger.create({
+          trigger: authBlock,
+          start: 'top 82%',
+          onEnter: () => gsap.to(authBlock, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' })
+        });
+      }
+
+      // Final CTA elements
+      document.querySelectorAll('#waitlist .section-label, #waitlist .section-headline, #waitlist .scarcity-line, #waitlist .quality-line, #waitlist .final-cta-buttons').forEach(el => {
+        gsap.set(el, { opacity: 0, y: 12 });
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 88%',
+          onEnter: () => gsap.to(el, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' })
+        });
+      });
+
+    } else {
+      // If reduced motion: just make everything visible
+      document.querySelectorAll('.gsap-anim').forEach(el => {
+        el.style.opacity = 1;
+        el.style.transform = 'none';
+      });
+    }
+  </script>
+</body>
+</html>
