@@ -30,19 +30,27 @@
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--off-white);
+      background-color: var(--off-white);
       color: var(--charcoal);
       font-family: var(--font-body);
       font-size: 16px;
       line-height: 1.6;
       font-weight: 300;
       -webkit-font-smoothing: antialiased;
-      background-image: radial-gradient(circle at 20% 10%, rgba(13, 79, 92, 0.06), transparent 42%), radial-gradient(circle at 80% 0%, rgba(13, 79, 92, 0.04), transparent 38%);
+      background-image:
+        radial-gradient(circle at 14% 12%, rgba(13, 79, 92, 0.065), transparent 46%),
+        radial-gradient(circle at 88% 8%, rgba(13, 79, 92, 0.045), transparent 42%),
+        radial-gradient(circle at 50% 96%, rgba(13, 79, 92, 0.03), transparent 48%);
+      background-repeat: no-repeat;
     }
 
     /* ── REDUCED MOTION ── */
     @media (prefers-reduced-motion: reduce) {
       .gsap-anim { opacity: 1 !important; transform: none !important; }
+      .hero::before,
+      .hero::after,
+      .hero-blob,
+      #waitlist::before { animation: none !important; transition: none !important; }
     }
 
     /* ── NAV ── */
@@ -105,6 +113,35 @@
       margin: 0 auto;
       position: relative;
       overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(130deg, rgba(255, 255, 255, 0.42) 0%, rgba(13, 79, 92, 0.04) 48%, rgba(255, 255, 255, 0.08) 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-blob {
+      position: absolute;
+      right: 8%;
+      top: 21%;
+      width: min(44vw, 460px);
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 38%, rgba(13, 79, 92, 0.36) 0%, rgba(13, 79, 92, 0.14) 36%, rgba(13, 79, 92, 0) 72%);
+      filter: blur(88px);
+      opacity: 0.36;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-section > * {
+      position: relative;
+      z-index: 2;
     }
 
     .hero-section::after {
@@ -117,6 +154,7 @@
       border-radius: 50%;
       background: radial-gradient(circle at center, rgba(13, 79, 92, 0.18), rgba(13, 79, 92, 0));
       pointer-events: none;
+      z-index: 1;
     }
 
     .hero-eyebrow {
@@ -639,6 +677,26 @@
       gap: 16px;
     }
 
+    #waitlist {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    #waitlist::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 24%, rgba(13, 79, 92, 0.075), rgba(13, 79, 92, 0) 64%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #waitlist > * {
+      position: relative;
+      z-index: 1;
+    }
+
     /* ── FOOTER ── */
     footer {
       padding: 40px 48px;
@@ -893,7 +951,8 @@
       .proof-strip {
         grid-template-columns: 1fr 1fr;
       }
-      .hero-section::after { display: none; }
+      .hero-section::after,
+      .hero-blob { display: none; }
     }
   </style>
 </head>
@@ -913,7 +972,8 @@
   </nav>
 
   <!-- ── HERO ── -->
-  <section class="hero-section" id="home">
+  <section class="hero-section hero" id="home">
+    <div class="hero-blob" aria-hidden="true"></div>
     <p class="hero-eyebrow gsap-anim" id="hero-eyebrow">Nigeria-Based. Global Standard.</p>
     <h1 class="hero-headline gsap-anim" id="hero-headline">
       For Those Building<br /><em>What's Next.</em>
