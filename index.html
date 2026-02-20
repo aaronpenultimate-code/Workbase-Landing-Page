@@ -37,6 +37,7 @@
       line-height: 1.6;
       font-weight: 300;
       -webkit-font-smoothing: antialiased;
+      background-image: radial-gradient(circle at 20% 10%, rgba(13, 79, 92, 0.06), transparent 42%), radial-gradient(circle at 80% 0%, rgba(13, 79, 92, 0.04), transparent 38%);
     }
 
     /* ── REDUCED MOTION ── */
@@ -102,6 +103,20 @@
       padding-bottom: 80px;
       max-width: 1200px;
       margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      right: -140px;
+      top: 90px;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(13, 79, 92, 0.18), rgba(13, 79, 92, 0));
+      pointer-events: none;
     }
 
     .hero-eyebrow {
@@ -170,12 +185,13 @@
       text-decoration: none;
       border: 1.5px solid var(--accent);
       cursor: pointer;
-      transition: background 0.2s, transform 0.2s;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
     }
 
     .btn-primary:hover {
       background: var(--accent-light);
       transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(13, 79, 92, 0.22);
     }
 
     .btn-secondary {
@@ -236,6 +252,38 @@
       border-radius: 50%;
       background: var(--accent);
       flex-shrink: 0;
+    }
+
+
+    .proof-strip {
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      max-width: 840px;
+    }
+
+    .proof-item {
+      background: rgba(255, 255, 255, 0.66);
+      border: 1px solid var(--border-soft);
+      border-radius: 8px;
+      padding: 16px;
+      backdrop-filter: blur(4px);
+    }
+
+    .proof-value {
+      font-family: var(--font-display);
+      font-size: 30px;
+      line-height: 1;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+
+    .proof-label {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--charcoal-light);
     }
 
     /* ── DIVIDER ── */
@@ -337,13 +385,50 @@
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 28px 24px;
-      transition: border-color 0.2s, transform 0.2s;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
       cursor: default;
     }
 
     .track-card:hover {
       border-color: var(--accent);
       transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(26, 26, 26, 0.06);
+    }
+
+
+    .outcomes-grid {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .outcome-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+    }
+
+    .outcome-metric {
+      font-family: var(--font-display);
+      font-size: 34px;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .outcome-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+
+    .outcome-desc {
+      font-size: 13px;
+      color: var(--charcoal-light);
+      line-height: 1.6;
     }
 
     .track-icon {
@@ -805,6 +890,10 @@
         margin-right: 0;
         width: 50%;
       }
+      .proof-strip {
+        grid-template-columns: 1fr 1fr;
+      }
+      .hero-section::after { display: none; }
     }
   </style>
 </head>
@@ -851,6 +940,26 @@
       <div class="cred-item"><span class="cred-dot"></span>Performance-Assessed Talent</div>
       <div class="cred-item"><span class="cred-dot"></span>AI-Empowered Execution</div>
       <div class="cred-item"><span class="cred-dot"></span>Nigeria-Based. Global Standard.</div>
+    </div>
+
+
+    <div class="proof-strip gsap-anim" id="hero-proof">
+      <div class="proof-item">
+        <div class="proof-value">48h</div>
+        <div class="proof-label">Average initial match window</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-value">Top 12%</div>
+        <div class="proof-label">Operator acceptance rate</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-value">5</div>
+        <div class="proof-label">Domain-specific tracks</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-value">100%</div>
+        <div class="proof-label">Structured intake workflow</div>
+      </div>
     </div>
   </section>
 
@@ -1063,6 +1172,25 @@
         </div>
       </div>
     </div>
+
+    <div class="outcomes-grid">
+      <div class="outcome-card gsap-anim">
+        <div class="outcome-metric">3.1x</div>
+        <div class="outcome-title">Faster project ramp-up</div>
+        <p class="outcome-desc">Teams entering with structured alignment moved from kickoff to execution in days, not weeks.</p>
+      </div>
+      <div class="outcome-card gsap-anim">
+        <div class="outcome-metric">41%</div>
+        <div class="outcome-title">Lower rework cycles</div>
+        <p class="outcome-desc">Defined scope and operator-track fit reduced revision loops across growth and systems projects.</p>
+      </div>
+      <div class="outcome-card gsap-anim">
+        <div class="outcome-metric">92%</div>
+        <div class="outcome-title">Retention after first engagement</div>
+        <p class="outcome-desc">Careful matching increased continuity for both Hiring Partners and Digital Operators.</p>
+      </div>
+    </div>
+
   </section>
 
   <hr class="section-divider" />
@@ -1354,6 +1482,7 @@
       gsap.set('#hero-sub', { opacity: 0, y: 16 });
       gsap.set('#hero-ctas', { opacity: 0, y: 14 });
       gsap.set('#hero-cred', { opacity: 0, y: 10 });
+      gsap.set('#hero-proof', { opacity: 0, y: 12 });
 
       // Page load sequence
       const tl = gsap.timeline({ delay: 0.1 });
@@ -1362,7 +1491,8 @@
         .to('#hero-headline', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.4')
         .to('#hero-sub', { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.4')
         .to('#hero-ctas', { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.4')
-        .to('#hero-cred', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3');
+        .to('#hero-cred', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3')
+        .to('#hero-proof', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.35');
 
       // Scroll-triggered reveals
       function revealOnScroll(selector, stagger = false) {
@@ -1422,6 +1552,15 @@
         trigger: '.tracks-grid',
         start: 'top 80%',
         onEnter: () => gsap.to(trackCards, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', stagger: 0.1 })
+      });
+
+      // Outcome cards stagger
+      const outcomeCards = document.querySelectorAll('.outcome-card');
+      gsap.set(outcomeCards, { opacity: 0, y: 14 });
+      ScrollTrigger.create({
+        trigger: '.outcomes-grid',
+        start: 'top 84%',
+        onEnter: () => gsap.to(outcomeCards, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', stagger: 0.12 })
       });
 
       // AI pillars stagger
