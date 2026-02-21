@@ -222,6 +222,81 @@ p { margin: 0; }
 .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 .section--dark .card { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.17); color: #e8f1ff; }
 
+
+.tracks-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(20px, 2vw, 28px);
+}
+
+.track-card {
+  text-align: left;
+  padding: clamp(24px, 2.2vw, 28px);
+}
+
+.track-card h3 {
+  margin-bottom: 14px;
+}
+
+.track-meta-title {
+  margin-top: 14px;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: color-mix(in srgb, currentColor 78%, #8ea5bd);
+}
+
+.track-card ul,
+.quick-mapping ul,
+.track-subtype ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+
+.track-card li,
+.quick-mapping li,
+.track-subtype li {
+  margin: 0 0 6px;
+}
+
+.track-subtype {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.track-subtype-label {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.track-subtype-helper {
+  margin-top: 4px;
+  font-size: 0.9rem;
+  color: color-mix(in srgb, currentColor 80%, #9fb5ca);
+}
+
+.quick-mapping {
+  margin-top: 10px;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.quick-mapping ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 18px;
+}
+
+.quick-mapping li {
+  margin: 0;
+}
+
 .final-cta { text-align: center; }
 .final-cta .content { margin-inline: auto; }
 .final-cta .lead, .final-cta .section-title { margin-inline: auto; }
@@ -298,8 +373,16 @@ a:focus-visible {
   .grid-4,
   .grid-3,
   .grid-2,
+  .tracks-grid,
   .hero-ctas,
-  .role-cards { grid-template-columns: 1fr; }
+  .role-cards,
+  .quick-mapping ul { grid-template-columns: 1fr; }
+  .track-card {
+    padding: 22px;
+  }
+  .track-subtype {
+    padding: 14px;
+  }
   .hero {
     min-height: auto;
     padding-block: 112px 84px;
