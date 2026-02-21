@@ -135,8 +135,8 @@ p { margin: 0; }
 
 .hero {
   min-height: 92vh;
-  display: flex;
-  align-items: center;
+  display: grid;
+  place-items: center;
   overflow: hidden;
   background: radial-gradient(circle at 20% 20%, rgba(26, 61, 83, 0.72), rgba(9, 14, 21, 0.97) 62%);
 }
@@ -188,17 +188,18 @@ p { margin: 0; }
 }
 .hero__inner { position: relative; z-index: 4; width: 100%; }
 .hero__content {
-  text-align: left;
-  margin-inline: 0;
-  max-width: 760px;
+  width: min(760px, 100% - 40px);
+  margin-inline: auto;
+  text-align: center;
   color: #edf4ff;
 }
 .hero__content .lead { color: rgba(220, 232, 247, 0.95); max-width: 62ch; }
-.hero h1 { margin-inline: 0; }
+.hero h1,
+.hero .lead { margin-inline: auto; }
 .hero__chips {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 12px;
 }
 .hero__chip {
@@ -214,6 +215,8 @@ p { margin: 0; }
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
   justify-content: center;
+  margin-inline: auto;
+  width: 100%;
 }
 .hero-cta-item {
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -251,7 +254,7 @@ p { margin: 0; }
 .tracks-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  gap: clamp(20px, 2vw, 28px);
 }
 
 .track-card {
@@ -277,7 +280,8 @@ p { margin: 0; }
 }
 
 .track-summary {
-  margin: 0 0 10px;
+  margin: 0;
+  font-size: 0.92rem;
   color: color-mix(in srgb, currentColor 83%, #9fb5ca);
 }
 
@@ -292,17 +296,21 @@ p { margin: 0; }
 
 .track-card ul,
 .quick-mapping ul {
-  margin: 8px 0 0;
+  margin: 6px 0 0;
   padding-left: 18px;
 }
 
 .track-card li,
 .quick-mapping li {
-  margin: 0 0 6px;
+  margin: 0 0 4px;
 }
 
 .track-card--security {
   border-left: 3px solid rgba(99, 208, 207, 0.78);
+}
+
+.track-block {
+  margin-top: 10px;
 }
 
 .badge {
@@ -439,7 +447,7 @@ a:focus-visible {
     padding: 84px 0 56px;
   }
   .hero__inner,
-  .hero__content { width: 100%; }
+  .hero__content { width: min(760px, 100% - 32px); }
   .hero__chips { gap: 10px; }
   .hero__chip { max-width: 100%; }
   .hero__cta { display: grid; gap: 12px; }
