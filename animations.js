@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revealNodes = Array.from(document.querySelectorAll('.reveal'));
-  const staggerNodes = Array.from(document.querySelectorAll('.reveal-stagger'));
+  const staggerContainers = Array.from(document.querySelectorAll('.reveal-stagger'));
 
   if (reducedMotion) {
     revealNodes.forEach((node) => node.classList.add('is-visible'));
+    document.documentElement.classList.add('reduced-motion');
     return;
   }
 
@@ -35,9 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(node);
   });
 
-  staggerNodes.forEach((node) => {
-    if (node.closest('.hero')) return;
-    observer.observe(node);
+  staggerContainers.forEach((container) => {
+    if (!container.closest('.hero')) observer.observe(container);
   });
 
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
@@ -67,15 +67,4 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 
   requestTick();
-
-  const heroContent = document.querySelector('.hero__content');
-  if (heroContent) {
-    heroContent.animate(
-      [
-        { opacity: 0, transform: 'translate3d(0, 14px, 0)' },
-        { opacity: 1, transform: 'translate3d(0, 0, 0)' }
-      ],
-      { duration: 550, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'both' }
-    );
-  }
 });

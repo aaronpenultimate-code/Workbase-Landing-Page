@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="bg-grid grid-anim" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
   <div class="bg-noise" aria-hidden="true"></div>
 
   <header class="site-header">
@@ -29,36 +29,32 @@
   </header>
 
   <main id="top">
-    <section class="section hero section--dark">
+    <section class="section hero section--dark" aria-label="Workbase hero">
       <img class="hero__bg" src="assets/hero.webp" alt="" loading="eager" decoding="async" fetchpriority="high" aria-hidden="true" />
       <div class="hero__overlay" aria-hidden="true"></div>
       <div class="hero__grid" aria-hidden="true"></div>
-      <div class="parallax-shape hero__blob hero__blob--one" data-speed="0.06" aria-hidden="true"></div>
-      <div class="parallax-shape hero__blob hero__blob--two" data-speed="0.10" aria-hidden="true"></div>
+      <div class="parallax-shape hero__blob hero__blob--one" data-speed="0.08" aria-hidden="true"></div>
+      <div class="parallax-shape hero__blob hero__blob--two" data-speed="0.12" aria-hidden="true"></div>
+
       <div class="container hero__inner">
-        <div class="hero__content stack reveal">
+        <div class="hero__content content stack-24 reveal">
           <p class="eyebrow">Nigeria’s Digital Gig Execution Layer</p>
           <h1>Hire gig operators who ship — not profiles who pitch.</h1>
           <p class="lead">Tell us the outcome and timeline. We present a vetted shortlist of Nigeria-based operators for contracts, sprints, or retainers — so you stop paying for rework.</p>
-          <div class="hero__engagements" aria-label="Engagement types">
-            <span>Contracts</span>
-            <span>Sprints</span>
-            <span>Retainers</span>
-          </div>
+
           <div class="hero__chips" aria-label="Workbase proof points">
             <span class="hero__chip">Selection gates (Proof • Reliability • Fit)</span>
             <span class="hero__chip">Track placement (5 lanes)</span>
             <span class="hero__chip">No open marketplace noise</span>
             <span class="hero__chip">Limited intake</span>
           </div>
+
           <div class="hero-ctas" aria-label="Primary actions">
-            <div class="hero-cta-item">
-              <p class="hero-cta-label">HIRERS</p>
+            <div class="hero-cta-item stack-8">
               <a href="#" class="btn btn--primary hero-btn--hirers" onclick="openModal(event, 'hiring')">Request Placement Access</a>
               <p class="hero-cta-micro">Get a vetted shortlist fast.</p>
             </div>
-            <div class="hero-cta-item">
-              <p class="hero-cta-label">OPERATORS</p>
+            <div class="hero-cta-item stack-8">
               <a href="#" class="btn btn--ghost hero-btn--operators" onclick="openModal(event, 'operator')">Apply for Operator Selection</a>
               <p class="hero-cta-micro">Proof required. Reviewed in batches.</p>
             </div>
@@ -68,123 +64,136 @@
     </section>
 
     <section class="section" id="hirers">
-      <div class="container">
-        <div class="section-header stack reveal">
+      <div class="container stack-48">
+        <header class="content section-header stack-16 reveal">
           <p class="eyebrow">For hiring teams</p>
-          <h2 class="h2">The gig economy has options. Execution is rare.</h2>
-          <p class="lead">Most hiring pain comes from weak selection and unclear standards. Workbase narrows the field to operators who can execute under pressure, not just interview well.</p>
+          <h2 class="section-title">The gig economy has options. Execution is rare.</h2>
+          <p class="lead">Workbase helps Nigerian teams and founders run better selection, then faster placement. You brief the outcome, timeline, and engagement model; we return shortlist quality built for delivery.</p>
+        </header>
+
+        <div class="content stack-16 reveal">
+          <p class="eyebrow">Engagement models</p>
+          <p class="lead">Choose the structure that matches your scope and operating rhythm.</p>
         </div>
 
-        <div class="grid stats-grid reveal-stagger">
-          <article class="card stat-card reveal">
-            <p class="muted">Engagement model</p>
+        <div class="grid grid-3 reveal-stagger">
+          <article class="card reveal">
             <h3>Contracts</h3>
-            <p>Project-defined delivery with explicit outcomes and handoff standards.</p>
+            <p>Project-defined delivery with explicit outcomes, milestones, and handoff standards.</p>
           </article>
-          <article class="card stat-card reveal">
-            <p class="muted">Engagement model</p>
+          <article class="card reveal">
             <h3>Sprints</h3>
             <p>Short-cycle execution for urgent growth, product, and operations priorities.</p>
           </article>
-          <article class="card stat-card reveal">
-            <p class="muted">Engagement model</p>
+          <article class="card reveal">
             <h3>Retainers</h3>
-            <p>Ongoing operator support for teams that need steady weekly output.</p>
+            <p>Ongoing operator support for teams that need dependable weekly output.</p>
           </article>
         </div>
       </div>
-      <div class="parallax-shape shape-a" data-speed="0.08" aria-hidden="true"></div>
     </section>
 
     <section class="section section--alt" id="risk">
-      <div class="container">
-        <div class="section-header stack reveal">
-          <p class="eyebrow">Cost of hiring wrong</p>
-          <h2 class="h2">If selection is weak, everything downstream gets expensive.</h2>
-        </div>
-        <div class="grid risk-grid reveal-stagger">
-          <article class="card reveal"><h3>Missed deadlines</h3><p>Timelines slip when delivery discipline isn't screened before placement.</p></article>
+      <div class="container stack-48">
+        <header class="content section-header stack-16 reveal">
+          <p class="eyebrow">Cost of weak selection</p>
+          <h2 class="section-title">If selection is weak, everything downstream gets expensive.</h2>
+          <p class="lead">Poor-fit operators increase handholding and reduce shipping speed. A strong selection layer protects budget, morale, and timelines.</p>
+        </header>
+
+        <div class="grid grid-3 reveal-stagger">
+          <article class="card reveal"><h3>Missed deadlines</h3><p>Timelines slip when delivery discipline is not screened before placement.</p></article>
           <article class="card reveal"><h3>Rework loops</h3><p>Unclear ownership creates revisions, context loss, and avoidable delays.</p></article>
-          <article class="card reveal"><h3>Team drag</h3><p>Internal staff spend cycles fixing execution instead of driving growth.</p></article>
+          <article class="card reveal"><h3>Team drag</h3><p>Internal teams spend cycles fixing execution instead of driving growth.</p></article>
           <article class="card reveal"><h3>Cash leakage</h3><p>You pay for activity while outcomes stay inconsistent.</p></article>
-          <article class="card reveal"><h3>Brand risk</h3><p>Poor operator quality hits customer trust and partner confidence.</p></article>
-          <article class="card reveal"><h3>Leadership fatigue</h3><p>Founders and managers become bottlenecks for basic quality control.</p></article>
+          <article class="card reveal"><h3>Brand risk</h3><p>Poor operator quality hurts customer trust and partner confidence.</p></article>
+          <article class="card reveal"><h3>Leadership fatigue</h3><p>Managers become quality-control bottlenecks for routine delivery.</p></article>
         </div>
       </div>
+      <div class="parallax-shape shape-a" data-speed="0.05" aria-hidden="true"></div>
     </section>
 
     <section class="section" id="operators">
-      <div class="container two-col">
-        <div class="stack reveal">
+      <div class="container stack-48">
+        <header class="content section-header stack-16 reveal">
           <p class="eyebrow">For operators</p>
-          <h2 class="h2">If you're elite, stop competing with amateurs.</h2>
-          <p class="lead">Workbase is for Nigeria-based operators who want serious gigs, serious standards, and serious counterparties.</p>
+          <h2 class="section-title">If you are elite, stop competing with noise.</h2>
+          <p class="lead">Workbase is built for Nigeria-based digital operators who want better contracts, clearer scopes, and placement based on proof.</p>
           <a href="#" class="btn btn--secondary" onclick="openModal(event, 'operator')">Apply for Operator Selection</a>
-        </div>
-        <div class="card card--hover reveal">
-          <h3>What selection protects</h3>
-          <ul>
-            <li>Clear scope before work starts</li>
-            <li>Better-fit contracts and retainers</li>
-            <li>Less pricing pressure from low-signal bidding</li>
-            <li>Performance tracked by outcomes, not noise</li>
-          </ul>
+        </header>
+
+        <div class="grid grid-2 reveal-stagger">
+          <article class="card reveal">
+            <h3>Selection standards</h3>
+            <p>Operators are assessed on capability, reliability, and fit before placement.</p>
+          </article>
+          <article class="card reveal">
+            <h3>What operators get</h3>
+            <p>Better-fit contracts, sprint work, and retainers with less low-signal bidding noise.</p>
+          </article>
         </div>
       </div>
-      <div class="parallax-shape shape-b" data-speed="0.05" aria-hidden="true"></div>
+      <div class="parallax-shape shape-b" data-speed="0.04" aria-hidden="true"></div>
     </section>
 
     <section class="section section--dark" id="tracks">
-      <div class="container">
-        <div class="section-header stack reveal">
+      <div class="container stack-48">
+        <header class="content section-header stack-16 reveal">
           <p class="eyebrow">Operator tracks</p>
-          <h2 class="h2">Five gig tracks. One obsession: outcomes.</h2>
-        </div>
-        <div class="grid tracks-grid reveal-stagger">
-          <article class="card track-card reveal"><h3>Growth</h3><p>Demand generation, campaign execution, and conversion-focused growth systems.</p></article>
-          <article class="card track-card reveal"><h3>Revenue</h3><p>Pipeline operations, sales enablement workflows, and close-rate improvement.</p></article>
-          <article class="card track-card reveal"><h3>Systems</h3><p>Automation, tooling, integration, and repeatable operating infrastructure.</p></article>
-          <article class="card track-card reveal"><h3>Retention</h3><p>Lifecycle messaging, customer health operations, and churn reduction loops.</p></article>
-          <article class="card track-card reveal"><h3>Intelligence</h3><p>Analytics operations, reporting reliability, and decision-ready insights.</p></article>
+          <h2 class="section-title">Five execution lanes for Nigeria’s digital gig economy.</h2>
+          <p class="lead">Every shortlisted operator is placed into the lane where they can ship outcomes fastest.</p>
+        </header>
+
+        <div class="grid grid-3 reveal-stagger">
+          <article class="card reveal"><h3>Growth</h3><p>Demand generation, campaign execution, and conversion-focused growth systems.</p></article>
+          <article class="card reveal"><h3>Revenue</h3><p>Pipeline operations, sales enablement workflows, and close-rate improvement.</p></article>
+          <article class="card reveal"><h3>Systems</h3><p>Automation, tooling, integration, and repeatable operating infrastructure.</p></article>
+          <article class="card reveal"><h3>Retention</h3><p>Lifecycle messaging, customer health operations, and churn reduction loops.</p></article>
+          <article class="card reveal"><h3>Intelligence</h3><p>Analytics operations, reporting reliability, and decision-ready insights.</p></article>
         </div>
       </div>
     </section>
 
     <section class="section" id="approach">
-      <div class="container two-col">
-        <div class="stack reveal">
-          <p class="eyebrow">Standards and gates</p>
-          <h2 class="h2">Selection first. Placement second. Performance always.</h2>
-          <p>We apply practical selection logic before any placement conversation. This is not an open marketplace.</p>
-        </div>
-        <div class="grid steps-grid reveal-stagger">
-          <article class="card step-card reveal"><h3>Gate 1: Capability</h3><p>Track-specific experience and execution depth.</p></article>
-          <article class="card step-card reveal"><h3>Gate 2: Reliability</h3><p>Consistency, communication, and delivery behavior.</p></article>
-          <article class="card step-card reveal"><h3>Gate 3: Fit</h3><p>Scope, timeline, and operating rhythm alignment.</p></article>
+      <div class="container stack-48">
+        <header class="content section-header stack-16 reveal">
+          <p class="eyebrow">Selection logic</p>
+          <h2 class="section-title">Selection first. Placement second. Performance always.</h2>
+          <p class="lead">This is not an open marketplace. Workbase runs selection gates before placement to improve delivery quality from day one.</p>
+        </header>
+
+        <div class="grid grid-3 reveal-stagger">
+          <article class="card reveal"><h3>Gate 1: Proof</h3><p>Track-specific evidence of execution, not just polished profiles.</p></article>
+          <article class="card reveal"><h3>Gate 2: Reliability</h3><p>Consistency, communication quality, and delivery behavior under deadlines.</p></article>
+          <article class="card reveal"><h3>Gate 3: Fit</h3><p>Matching scope, timeline, and cadence to the right operator and engagement model.</p></article>
         </div>
       </div>
     </section>
 
     <section class="section section--alt" id="process">
-      <div class="container">
-        <div class="section-header stack reveal">
+      <div class="container stack-48">
+        <header class="content section-header stack-16 reveal">
           <p class="eyebrow">How it works</p>
-          <h2 class="h2">Four steps to predictable gig execution.</h2>
-        </div>
-        <div class="grid process-grid reveal-stagger">
-          <article class="card step-card reveal"><p class="muted">Step 1</p><h3>Define the outcome</h3><p>Tell us what must ship and how success is measured.</p></article>
-          <article class="card step-card reveal"><p class="muted">Step 2</p><h3>Selection shortlist</h3><p>We filter for operator quality and fit before intros.</p></article>
-          <article class="card step-card reveal"><p class="muted">Step 3</p><h3>Placement</h3><p>Choose the best-fit operator for contract, sprint, or retainer.</p></article>
-          <article class="card step-card reveal"><p class="muted">Step 4</p><h3>Performance tracking</h3><p>Run with clear scope, cadence, and execution accountability.</p></article>
+          <h2 class="section-title">Four steps to predictable gig execution.</h2>
+          <p class="lead">From intake to placement, each step is designed to reduce rework and improve shipping speed.</p>
+        </header>
+
+        <div class="grid grid-4 reveal-stagger">
+          <article class="card reveal"><p class="muted">Step 1</p><h3>Define the outcome</h3><p>Tell us what must ship and how success will be measured.</p></article>
+          <article class="card reveal"><p class="muted">Step 2</p><h3>Selection shortlist</h3><p>We filter for capability, reliability, and fit before introductions.</p></article>
+          <article class="card reveal"><p class="muted">Step 3</p><h3>Placement</h3><p>Choose the best-fit operator for a contract, sprint, or retainer.</p></article>
+          <article class="card reveal"><p class="muted">Step 4</p><h3>Performance tracking</h3><p>Run with clear scope, cadence, and execution accountability.</p></article>
         </div>
       </div>
     </section>
 
     <section class="section final-cta section--dark" id="waitlist">
-      <div class="container stack reveal">
-        <p class="eyebrow">Final call</p>
-        <h2 class="h2">If you hire from noise, expect noise.</h2>
-        <p class="lead">If you want a higher standard for Nigeria's digital gig economy, start with a better selection layer.</p>
+      <div class="container stack-24 reveal">
+        <div class="content stack-16">
+          <p class="eyebrow">Final call</p>
+          <h2 class="section-title">If you hire from noise, expect noise.</h2>
+          <p class="lead">For Nigeria-first teams in the gig economy, better outcomes start with better selection and placement.</p>
+        </div>
         <div class="hero-ctas reveal-stagger">
           <a href="#" class="btn btn--primary reveal" onclick="openModal(event, 'hiring')">Request Placement Access</a>
           <a href="#" class="btn btn--ghost reveal" onclick="openModal(event, 'operator')">Apply for Operator Selection</a>
