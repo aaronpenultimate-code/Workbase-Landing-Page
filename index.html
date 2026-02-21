@@ -30,7 +30,18 @@
 
   <main id="top">
     <section class="section hero section--dark" aria-label="Workbase hero">
-      <img class="hero__bg" src="assets/hero.webp" alt="" loading="eager" decoding="async" fetchpriority="high" aria-hidden="true" />
+      <video
+  class="hero__bg hero__bg--video"
+  autoplay
+  muted
+  loop
+  playsinline
+  preload="metadata"
+  poster="assets/hero.webp"
+  aria-hidden="true"
+>
+  <source src="assets/hero.mp4" type="video/mp4" />
+</video>
       <div class="hero__overlay" aria-hidden="true"></div>
       <div class="hero__grid" aria-hidden="true"></div>
       <div class="parallax-shape hero__blob hero__blob--one" data-speed="0.08" aria-hidden="true"></div>
