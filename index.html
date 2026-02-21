@@ -30,26 +30,40 @@
 
   <main id="top">
     <section class="section hero section--dark">
-      <div class="container hero-layout">
-        <div class="hero-copy stack">
-          <p class="eyebrow">Nigeria's curated digital gig operators — Nigeria-first.</p>
-          <h1>Stop gambling on freelancers. Get gig operators who ship.</h1>
-          <p class="lead">Workbase is the selection layer for Nigeria's digital gig economy — pre-vetted operators for contracts, sprints, and retainers. You don't need more options. You need dependable execution.</p>
-          <div class="hero-ctas">
-            <a href="#" class="btn btn--primary" onclick="openModal(event, 'hiring')">Request Placement Access</a>
-            <a href="#" class="btn btn--ghost" onclick="openModal(event, 'operator')">Apply for Operator Selection</a>
+      <img class="hero__bg" src="assets/hero.webp" alt="" loading="eager" decoding="async" fetchpriority="high" aria-hidden="true" />
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="hero__grid" aria-hidden="true"></div>
+      <div class="parallax-shape hero__blob hero__blob--one" data-speed="0.06" aria-hidden="true"></div>
+      <div class="parallax-shape hero__blob hero__blob--two" data-speed="0.10" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <div class="hero__content stack reveal">
+          <p class="eyebrow">Nigeria’s Digital Gig Execution Layer</p>
+          <h1>Hire gig operators who ship — not profiles who pitch.</h1>
+          <p class="lead">Tell us the outcome and timeline. We present a vetted shortlist of Nigeria-based operators for contracts, sprints, or retainers — so you stop paying for rework.</p>
+          <div class="hero__engagements" aria-label="Engagement types">
+            <span>Contracts</span>
+            <span>Sprints</span>
+            <span>Retainers</span>
           </div>
-          <p class="muted">Limited intake. Standards first.</p>
+          <div class="hero__chips" aria-label="Workbase proof points">
+            <span class="hero__chip">Selection gates (Proof • Reliability • Fit)</span>
+            <span class="hero__chip">Track placement (5 lanes)</span>
+            <span class="hero__chip">No open marketplace noise</span>
+            <span class="hero__chip">Limited intake</span>
+          </div>
+          <div class="hero-ctas" aria-label="Primary actions">
+            <div class="hero-cta-item">
+              <p class="hero-cta-label">HIRERS</p>
+              <a href="#" class="btn btn--primary hero-btn--hirers" onclick="openModal(event, 'hiring')">Request Placement Access</a>
+              <p class="hero-cta-micro">Get a vetted shortlist fast.</p>
+            </div>
+            <div class="hero-cta-item">
+              <p class="hero-cta-label">OPERATORS</p>
+              <a href="#" class="btn btn--ghost hero-btn--operators" onclick="openModal(event, 'operator')">Apply for Operator Selection</a>
+              <p class="hero-cta-micro">Proof required. Reviewed in batches.</p>
+            </div>
+          </div>
         </div>
-        <aside class="hero-panel card card--hover">
-          <h2 class="h2">Selection → Placement → Performance</h2>
-          <p>Workbase is built for teams that hire in the digital gig economy but refuse low standards.</p>
-          <ul>
-            <li>Nigeria-based operators only</li>
-            <li>Clear engagement models: contracts, sprints, retainers</li>
-            <li>Structured matching with defined selection gates</li>
-          </ul>
-        </aside>
       </div>
     </section>
 
