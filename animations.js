@@ -45,23 +45,37 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!parallaxShapes.length) return;
 
   let latestScrollY = window.scrollY || 0;
-  let ticking = false;
+  let rafId = null;
 
   const updateParallax = () => {
     parallaxShapes.forEach((shape) => {
       const speed = Number(shape.dataset.speed || 0.06);
-      const offset = clamp(latestScrollY * speed, -36, 36);
+      const offset = clamp(latestScrollY * speed, -24, 24);
       shape.style.transform = `translate3d(0, ${offset}px, 0)`;
     });
-    ticking = false;
+    rafId = null;
+  };
+
+  const requestTick = () => {
+    if (rafId !== null) return;
+    rafId = requestAnimationFrame(updateParallax);
   };
 
   window.addEventListener('scroll', () => {
     latestScrollY = window.scrollY || 0;
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(updateParallax);
+    requestTick();
   }, { passive: true });
 
-  updateParallax();
+  requestTick();
+
+  const heroContent = document.querySelector('.hero__content');
+  if (heroContent) {
+    heroContent.animate(
+      [
+        { opacity: 0, transform: 'translate3d(0, 14px, 0)' },
+        { opacity: 1, transform: 'translate3d(0, 0, 0)' }
+      ],
+      { duration: 550, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'both' }
+    );
+  }
 });
