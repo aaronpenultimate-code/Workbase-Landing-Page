@@ -226,57 +226,70 @@ p { margin: 0; }
 .tracks-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(20px, 2vw, 28px);
+  gap: 24px;
 }
 
 .track-card {
   text-align: left;
   padding: clamp(24px, 2.2vw, 28px);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
 }
 
 .track-card h3 {
-  margin-bottom: 14px;
+  margin: 0;
 }
 
-.track-meta-title {
+.track-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.track-summary {
+  margin: 0 0 10px;
+  color: color-mix(in srgb, currentColor 83%, #9fb5ca);
+}
+
+.track-block-title {
   margin-top: 14px;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-weight: 700;
-  color: color-mix(in srgb, currentColor 78%, #8ea5bd);
+  color: color-mix(in srgb, currentColor 75%, #8ea5bd);
 }
 
 .track-card ul,
-.quick-mapping ul,
-.track-subtype ul {
+.quick-mapping ul {
   margin: 8px 0 0;
   padding-left: 18px;
 }
 
 .track-card li,
-.quick-mapping li,
-.track-subtype li {
+.quick-mapping li {
   margin: 0 0 6px;
 }
 
-.track-subtype {
-  margin-top: 16px;
-  padding: 16px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.07);
+.track-card--security {
+  border-left: 3px solid rgba(99, 208, 207, 0.78);
 }
 
-.track-subtype-label {
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(99, 208, 207, 0.58);
+  padding: 4px 10px;
+  font-size: 0.72rem;
   font-weight: 700;
-  font-size: 0.95rem;
-}
-
-.track-subtype-helper {
-  margin-top: 4px;
-  font-size: 0.9rem;
-  color: color-mix(in srgb, currentColor 80%, #9fb5ca);
+  letter-spacing: 0.04em;
+  color: #b7eeef;
+  background: rgba(17, 92, 103, 0.28);
 }
 
 .quick-mapping {
@@ -295,6 +308,19 @@ p { margin: 0; }
 
 .quick-mapping li {
   margin: 0;
+}
+
+@media (max-width: 900px) {
+  .tracks-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .tracks-grid,
+  .quick-mapping ul {
+    grid-template-columns: 1fr;
+  }
 }
 
 .final-cta { text-align: center; }
@@ -373,15 +399,10 @@ a:focus-visible {
   .grid-4,
   .grid-3,
   .grid-2,
-  .tracks-grid,
   .hero-ctas,
-  .role-cards,
-  .quick-mapping ul { grid-template-columns: 1fr; }
+  .role-cards { grid-template-columns: 1fr; }
   .track-card {
     padding: 22px;
-  }
-  .track-subtype {
-    padding: 14px;
   }
   .hero {
     min-height: auto;
